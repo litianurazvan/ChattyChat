@@ -54,14 +54,22 @@
 		B2729B5E2057F1B200A9504D /* ChattyChat */ = {
 			isa = PBXGroup;
 			children = (
-				B2729B5F2057F1B200A9504D /* AppDelegate.swift */,
 				B2729B612057F1B200A9504D /* ViewController.swift */,
 				B2729B632057F1B200A9504D /* Main.storyboard */,
-				B2729B662057F1B200A9504D /* Assets.xcassets */,
-				B2729B682057F1B200A9504D /* LaunchScreen.storyboard */,
+				B2729B712057F46700A9504D /* Supporting files */,
 				B2729B6B2057F1B200A9504D /* Info.plist */,
 			);
 			path = ChattyChat;
+			sourceTree = "<group>";
+		};
+		B2729B712057F46700A9504D /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				B2729B5F2057F1B200A9504D /* AppDelegate.swift */,
+				B2729B662057F1B200A9504D /* Assets.xcassets */,
+				B2729B682057F1B200A9504D /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
