@@ -17,6 +17,18 @@ class UsersViewController: UIViewController {
     var rootReference: DatabaseReference!
     var usersReference: DatabaseReference!
     
+    func downloadImage(from profileImageUrl: URL, completion: @escaping (UIImage?)->()) {
+        URLSession.shared.dataTask(with: profileImageUrl, completionHandler: { data, urlResponse, error in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(nil)
+            }
+            
+            let image = data.flatMap(UIImage.init)
+            completion(image)
+        }).resume()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +64,16 @@ extension UsersViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
+        cell.imageView?.image = #imageLiteral(resourceName: "default_user")
         
+        if let profileImageUrlString = user.profileImage,
+            let profileImageUrl = URL(string: profileImageUrlString) {
+            downloadImage(from: profileImageUrl, completion: { image in
+                DispatchQueue.main.async {
+                    cell.imageView?.image = image ?? #imageLiteral(resourceName: "default_user")
+                }
+            })
+        }
         return cell
     }
 }
