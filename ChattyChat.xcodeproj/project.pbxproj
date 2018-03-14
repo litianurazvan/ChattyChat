@@ -9,11 +9,18 @@
 /* Begin PBXBuildFile section */
 		63C3309246CEAB5ABD536A8A /* Pods_ChattyChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9270AB8D985D852D50A4F1B5 /* Pods_ChattyChat.framework */; };
 		B2729B602057F1B200A9504D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B5F2057F1B200A9504D /* AppDelegate.swift */; };
-		B2729B622057F1B200A9504D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B612057F1B200A9504D /* ViewController.swift */; };
-		B2729B652057F1B200A9504D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2729B632057F1B200A9504D /* Main.storyboard */; };
 		B2729B672057F1B200A9504D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2729B662057F1B200A9504D /* Assets.xcassets */; };
 		B2729B6A2057F1B200A9504D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2729B682057F1B200A9504D /* LaunchScreen.storyboard */; };
 		B2729B732057F88C00A9504D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2729B722057F88C00A9504D /* GoogleService-Info.plist */; };
+		B2729B8D2059071600A9504D /* UIStoryBoard+CustomInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B892059071600A9504D /* UIStoryBoard+CustomInit.swift */; };
+		B2729B8E2059071600A9504D /* String+CapitalisedFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B8A2059071600A9504D /* String+CapitalisedFirst.swift */; };
+		B2729B8F2059071600A9504D /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B8B2059071600A9504D /* SegueHandlerType.swift */; };
+		B2729B902059071600A9504D /* UIAlertController+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B8C2059071600A9504D /* UIAlertController+Default.swift */; };
+		B2729B972059073500A9504D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B922059073500A9504D /* SignUpViewController.swift */; };
+		B2729B982059073500A9504D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B932059073500A9504D /* HomeViewController.swift */; };
+		B2729B992059073500A9504D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B942059073500A9504D /* StartViewController.swift */; };
+		B2729B9A2059073500A9504D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B952059073500A9504D /* LoginViewController.swift */; };
+		B2729B9B2059073500A9504D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2729B962059073500A9504D /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +29,19 @@
 		9270AB8D985D852D50A4F1B5 /* Pods_ChattyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChattyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2729B5C2057F1B200A9504D /* ChattyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChattyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2729B5F2057F1B200A9504D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B2729B612057F1B200A9504D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B2729B642057F1B200A9504D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2729B662057F1B200A9504D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2729B692057F1B200A9504D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2729B6B2057F1B200A9504D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2729B722057F88C00A9504D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B2729B892059071600A9504D /* UIStoryBoard+CustomInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+CustomInit.swift"; sourceTree = "<group>"; };
+		B2729B8A2059071600A9504D /* String+CapitalisedFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalisedFirst.swift"; sourceTree = "<group>"; };
+		B2729B8B2059071600A9504D /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		B2729B8C2059071600A9504D /* UIAlertController+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Default.swift"; sourceTree = "<group>"; };
+		B2729B922059073500A9504D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B2729B932059073500A9504D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B2729B942059073500A9504D /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		B2729B952059073500A9504D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B2729B962059073500A9504D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +94,12 @@
 		B2729B5E2057F1B200A9504D /* ChattyChat */ = {
 			isa = PBXGroup;
 			children = (
-				B2729B612057F1B200A9504D /* ViewController.swift */,
-				B2729B632057F1B200A9504D /* Main.storyboard */,
+				B2729B962059073500A9504D /* Main.storyboard */,
+				B2729B912059073500A9504D /* Screens */,
 				B2729B712057F46700A9504D /* Supporting files */,
 				B2729B6B2057F1B200A9504D /* Info.plist */,
 				B2729B722057F88C00A9504D /* GoogleService-Info.plist */,
+				B2729B882059071600A9504D /* Extensions */,
 			);
 			path = ChattyChat;
 			sourceTree = "<group>";
@@ -97,6 +112,29 @@
 				B2729B682057F1B200A9504D /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		B2729B882059071600A9504D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B2729B892059071600A9504D /* UIStoryBoard+CustomInit.swift */,
+				B2729B8A2059071600A9504D /* String+CapitalisedFirst.swift */,
+				B2729B8B2059071600A9504D /* SegueHandlerType.swift */,
+				B2729B8C2059071600A9504D /* UIAlertController+Default.swift */,
+			);
+			name = Extensions;
+			path = ../../FirebaseLogin/FirebaseLogin/FirebaseLogin/Extensions;
+			sourceTree = "<group>";
+		};
+		B2729B912059073500A9504D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B2729B922059073500A9504D /* SignUpViewController.swift */,
+				B2729B932059073500A9504D /* HomeViewController.swift */,
+				B2729B942059073500A9504D /* StartViewController.swift */,
+				B2729B952059073500A9504D /* LoginViewController.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,7 +202,7 @@
 				B2729B6A2057F1B200A9504D /* LaunchScreen.storyboard in Resources */,
 				B2729B732057F88C00A9504D /* GoogleService-Info.plist in Resources */,
 				B2729B672057F1B200A9504D /* Assets.xcassets in Resources */,
-				B2729B652057F1B200A9504D /* Main.storyboard in Resources */,
+				B2729B9B2059073500A9504D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,22 +275,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2729B622057F1B200A9504D /* ViewController.swift in Sources */,
+				B2729B9A2059073500A9504D /* LoginViewController.swift in Sources */,
+				B2729B972059073500A9504D /* SignUpViewController.swift in Sources */,
+				B2729B992059073500A9504D /* StartViewController.swift in Sources */,
+				B2729B8E2059071600A9504D /* String+CapitalisedFirst.swift in Sources */,
 				B2729B602057F1B200A9504D /* AppDelegate.swift in Sources */,
+				B2729B8F2059071600A9504D /* SegueHandlerType.swift in Sources */,
+				B2729B902059071600A9504D /* UIAlertController+Default.swift in Sources */,
+				B2729B982059073500A9504D /* HomeViewController.swift in Sources */,
+				B2729B8D2059071600A9504D /* UIStoryBoard+CustomInit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B2729B632057F1B200A9504D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2729B642057F1B200A9504D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B2729B682057F1B200A9504D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
