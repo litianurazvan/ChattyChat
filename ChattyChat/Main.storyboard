@@ -256,7 +256,7 @@
                         <viewLayoutGuide key="safeArea" id="y6T-sg-ga0"/>
                     </view>
                     <connections>
-                        <outlet property="nameTextField" destination="uh3-Er-ZVv" id="db0-5j-BGr"/>
+                        <outlet property="nameTextField" destination="uh3-Er-ZVv" id="SUa-OX-iwa"/>
                         <outlet property="passwordTextField" destination="fWX-zQ-qlp" id="Pgz-hV-3zC"/>
                         <outlet property="retypePasswordTextField" destination="qnH-0b-vzM" id="2Q6-w8-E9Z"/>
                         <outlet property="userNameTextField" destination="kgd-NR-ICG" id="wO0-h1-2Av"/>
