@@ -103,7 +103,7 @@
 				B2729B712057F46700A9504D /* Supporting files */,
 				B2729B882059071600A9504D /* Extensions */,
 				B2729B6B2057F1B200A9504D /* Info.plist */,
-				B2729B9E2059118200A9504D /* User.swift */,
+				B2729BA02059550900A9504D /* Model */,
 			);
 			path = ChattyChat;
 			sourceTree = "<group>";
@@ -141,6 +141,14 @@
 				B2729B9C2059086100A9504D /* UsersViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		B2729BA02059550900A9504D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B2729B9E2059118200A9504D /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
