@@ -14,7 +14,7 @@
         <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
         <!--Login View Controller-->
         <scene sceneID="1OH-aq-bPp">
             <objects>
-                <viewController id="Qyu-lN-htb" customClass="LoginViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qyu-lN-htb" customClass="LoginViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aCG-Hf-qxF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,7 +131,7 @@
         <!--Home View Controller-->
         <scene sceneID="ilI-5x-Lvj">
             <objects>
-                <viewController id="NRy-Wz-Hei" customClass="HomeViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NRy-Wz-Hei" customClass="HomeViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l4i-LY-faN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +151,7 @@
                         <viewLayoutGuide key="safeArea" id="sHN-7R-iDm"/>
                     </view>
                     <navigationItem key="navigationItem" id="5ME-Zf-IWL">
-                        <barButtonItem key="rightBarButtonItem" title="Sign out" id="CiK-pY-rkr">
+                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="CiK-pY-rkr">
                             <connections>
                                 <action selector="onSignOutButtonTap:" destination="NRy-Wz-Hei" id="2YT-Zk-eAm"/>
                             </connections>
@@ -165,7 +165,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="lCo-U1-JYw">
             <objects>
-                <viewController id="8Hf-E3-9Aa" customClass="SignUpViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8Hf-E3-9Aa" customClass="SignUpViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SIA-ii-oBT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
