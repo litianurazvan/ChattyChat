@@ -15,6 +15,16 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var retypePasswordTextField: UITextField!
     
+    var rootReference: DatabaseReference!
+    var usersReference: DatabaseReference!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        rootReference = Database.database().reference()
+        usersReference = rootReference.child("users")
+    }
+    
 
     @IBAction func onSignUpButtonPress(_ sender: UIButton) {
         
@@ -42,7 +52,10 @@ class SignUpViewController: UIViewController, SegueHandlerType {
                 self.present(alert, animated: true, completion: nil)
             }
             
-            if user != nil {
+            if let user = user {
+                let userRef = self.usersReference.child(user.uid)
+                userRef.updateChildValues(["email": email,
+                                           "password": password])
                 self.performSegueWithIdentifier(.signUpToHome, sender: nil)
             }
         })
