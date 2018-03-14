@@ -135,19 +135,7 @@
                     <view key="view" contentMode="scaleToFill" id="l4i-LY-faN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Z8-4r-heC">
-                                <rect key="frame" x="143.5" y="316" width="89.5" height="36"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="5Z8-4r-heC" firstAttribute="centerY" secondItem="l4i-LY-faN" secondAttribute="centerY" id="4Ht-cU-9Fb"/>
-                            <constraint firstItem="5Z8-4r-heC" firstAttribute="centerX" secondItem="l4i-LY-faN" secondAttribute="centerX" id="8N0-5h-Pss"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sHN-7R-iDm"/>
                     </view>
                     <navigationItem key="navigationItem" id="5ME-Zf-IWL">
