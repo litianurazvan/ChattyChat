@@ -11,7 +11,6 @@ import Firebase
 
 class SignUpViewController: UIViewController, SegueHandlerType {
 
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var retypePasswordTextField: UITextField!
@@ -28,12 +27,6 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     
 
     @IBAction func onSignUpButtonPress(_ sender: UIButton) {
-        
-        guard let name = nameTextField.text else {
-            let alert = UIAlertController.alertWithTitle("Please enter name", message: "Missing name")
-            present(alert, animated: true, completion: nil)
-            return
-        }
         
         guard let email = userNameTextField.text else {
             let alert = UIAlertController.alertWithTitle("Please enter email", message: "Missing email")
@@ -62,7 +55,7 @@ class SignUpViewController: UIViewController, SegueHandlerType {
             if let user = user {
                 let userRef = self.usersReference.child(user.uid)
                 userRef.updateChildValues(["email": email,
-                                           "name": name])
+                                           "password": password])
                 self.performSegueWithIdentifier(.signUpToHome, sender: nil)
             }
         })
