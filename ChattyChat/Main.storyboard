@@ -144,11 +144,56 @@
                                 <action selector="onSignOutButtonTap:" destination="NRy-Wz-Hei" id="2YT-Zk-eAm"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3Rd-zu-ID5">
+                            <connections>
+                                <segue destination="k4d-Z2-gER" kind="show" id="HoM-jl-l97"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYy-dz-xDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4790" y="76"/>
+        </scene>
+        <!--Users View Controller-->
+        <scene sceneID="6DJ-Wy-Luv">
+            <objects>
+                <viewController id="k4d-Z2-gER" customClass="UsersViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZDu-Oe-kfW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DI2-ss-wNb">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="4cj-zt-XWm">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4cj-zt-XWm" id="zPs-VD-ejF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DI2-ss-wNb" firstAttribute="leading" secondItem="CDG-Bw-PPw" secondAttribute="leading" id="2LX-P3-7w9"/>
+                            <constraint firstItem="CDG-Bw-PPw" firstAttribute="bottom" secondItem="DI2-ss-wNb" secondAttribute="bottom" id="4OL-Js-dTv"/>
+                            <constraint firstItem="CDG-Bw-PPw" firstAttribute="trailing" secondItem="DI2-ss-wNb" secondAttribute="trailing" id="AL2-9w-vWJ"/>
+                            <constraint firstItem="DI2-ss-wNb" firstAttribute="top" secondItem="CDG-Bw-PPw" secondAttribute="top" id="lcs-M4-uer"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CDG-Bw-PPw"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="DI2-ss-wNb" id="FJ3-Ec-eFV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0qx-2i-i0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5691" y="74"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="lCo-U1-JYw">
