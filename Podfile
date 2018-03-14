@@ -7,10 +7,11 @@ target 'ChattyChat' do
 
   # Pods for ChattyChat
 
+  pod 'Firebase'
+  pod 'Firebase/Storage'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Crash'
-  
 
 end
