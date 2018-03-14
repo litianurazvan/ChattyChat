@@ -21,6 +21,8 @@
 		B2729B992059073500A9504D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B942059073500A9504D /* StartViewController.swift */; };
 		B2729B9A2059073500A9504D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B952059073500A9504D /* LoginViewController.swift */; };
 		B2729B9B2059073500A9504D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2729B962059073500A9504D /* Main.storyboard */; };
+		B2729B9D2059086100A9504D /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B9C2059086100A9504D /* UsersViewController.swift */; };
+		B2729B9F2059118200A9504D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729B9E2059118200A9504D /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		B2729B942059073500A9504D /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B2729B952059073500A9504D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B2729B962059073500A9504D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B2729B9C2059086100A9504D /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		B2729B9E2059118200A9504D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +101,9 @@
 				B2729B962059073500A9504D /* Main.storyboard */,
 				B2729B912059073500A9504D /* Screens */,
 				B2729B712057F46700A9504D /* Supporting files */,
-				B2729B6B2057F1B200A9504D /* Info.plist */,
-				B2729B722057F88C00A9504D /* GoogleService-Info.plist */,
 				B2729B882059071600A9504D /* Extensions */,
+				B2729B6B2057F1B200A9504D /* Info.plist */,
+				B2729B9E2059118200A9504D /* User.swift */,
 			);
 			path = ChattyChat;
 			sourceTree = "<group>";
@@ -107,6 +111,7 @@
 		B2729B712057F46700A9504D /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				B2729B722057F88C00A9504D /* GoogleService-Info.plist */,
 				B2729B5F2057F1B200A9504D /* AppDelegate.swift */,
 				B2729B662057F1B200A9504D /* Assets.xcassets */,
 				B2729B682057F1B200A9504D /* LaunchScreen.storyboard */,
@@ -133,6 +138,7 @@
 				B2729B932059073500A9504D /* HomeViewController.swift */,
 				B2729B942059073500A9504D /* StartViewController.swift */,
 				B2729B952059073500A9504D /* LoginViewController.swift */,
+				B2729B9C2059086100A9504D /* UsersViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -282,8 +288,10 @@
 				B2729B602057F1B200A9504D /* AppDelegate.swift in Sources */,
 				B2729B8F2059071600A9504D /* SegueHandlerType.swift in Sources */,
 				B2729B902059071600A9504D /* UIAlertController+Default.swift in Sources */,
+				B2729B9D2059086100A9504D /* UsersViewController.swift in Sources */,
 				B2729B982059073500A9504D /* HomeViewController.swift in Sources */,
 				B2729B8D2059071600A9504D /* UIStoryBoard+CustomInit.swift in Sources */,
+				B2729B9F2059118200A9504D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
