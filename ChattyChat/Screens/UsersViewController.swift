@@ -28,13 +28,13 @@ class UsersViewController: UIViewController {
         rootReference = Database.database().reference()
         usersReference = rootReference.child("users")
         
-        usersReference.observe(.childAdded) { snapshot in
+        usersReference.observe(.childAdded) { [weak self] snapshot in
             guard let dictionary = snapshot.value as? [String: Any],
                 let user = User(dictionary: dictionary) else { return }
             
-            self.users.append(user)
+            self?.users.append(user)
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }

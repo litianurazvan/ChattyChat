@@ -44,18 +44,18 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     }
     
     fileprivate func createUser(withName name: String, email: String, password: String, urlString: String?) {
-        Auth.auth().createUser(withEmail: email, password: password, completion: { user, error in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] user, error in
             if let error = error {
                 let alert = UIAlertController.alertWithTitle("Error", message: error.localizedDescription)
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
             
-            if let user = user {
-                let userRef = self.usersReference.child(user.uid)
+            if let user = user,
+                let userRef = self?.usersReference.child(user.uid) {
                 userRef.updateChildValues(["email": email,
                                            "name": name,
                                            "profileImage": urlString])
-                self.performSegueWithIdentifier(.signUpToHome, sender: nil)
+                self?.performSegueWithIdentifier(.signUpToHome, sender: nil)
             }
         })
     }
@@ -100,10 +100,10 @@ class SignUpViewController: UIViewController, SegueHandlerType {
         guard let data = UIImagePNGRepresentation(profileImage) else { completion(nil); return }
         let imageStorageRef = usersProfileImagesReference.child("\(NSUUID().uuidString).png")
         
-        imageStorageRef.putData(data, metadata: nil) { metadata, error in
+        imageStorageRef.putData(data, metadata: nil) { [weak self] metadata, error in
             if let error = error {
                 let alert = UIAlertController.alertWithTitle("Error", message: error.localizedDescription)
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
             
             if let imageUrlString = metadata?.downloadURL()?.absoluteString {
