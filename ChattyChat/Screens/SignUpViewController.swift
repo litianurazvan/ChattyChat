@@ -97,7 +97,7 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     
     func uploadProfileImage(completion: @escaping (String?)->()) {
         guard let profileImage = profileImageView.image, profileImage != #imageLiteral(resourceName: "default_user") else { completion(nil); return }
-        guard let data = UIImagePNGRepresentation(profileImage) else { completion(nil); return }
+        guard let data = UIImageJPEGRepresentation(profileImage, 0.1) else { completion(nil); return }
         let imageStorageRef = usersProfileImagesReference.child("\(NSUUID().uuidString).png")
         
         imageStorageRef.putData(data, metadata: nil) { [weak self] metadata, error in
