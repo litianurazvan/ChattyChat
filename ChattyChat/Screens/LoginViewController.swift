@@ -28,14 +28,14 @@ class LoginViewController: UIViewController, SegueHandlerType {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
             if let error = error {
                 let alert = UIAlertController.alertWithTitle("Error", message: error.localizedDescription)
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
             
             if user != nil {
-                self.performSegueWithIdentifier(.logInToHome, sender: nil)
+                self?.performSegueWithIdentifier(.logInToHome, sender: nil)
             }
         }
     }

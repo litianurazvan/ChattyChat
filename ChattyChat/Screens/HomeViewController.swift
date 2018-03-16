@@ -20,8 +20,10 @@ class HomeViewController: UIViewController {
             return
         }
         
-        let storyboard = UIStoryboard(storyboard: .main, bundle: nil)
-        let initial = storyboard.instantiateInitialViewController()
-        UIApplication.shared.keyWindow?.rootViewController = initial
+        self.dismiss(animated: true) {
+            let storyboard = UIStoryboard(storyboard: .main, bundle: nil)
+            let initial = storyboard.instantiateInitialViewController()
+            UIApplication.shared.keyWindow?.rootViewController = initial
+        }
     }
 }
