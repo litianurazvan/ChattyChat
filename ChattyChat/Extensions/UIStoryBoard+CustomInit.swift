@@ -20,6 +20,10 @@ extension UIStoryboard {
     convenience init(storyboard: Storyboard, bundle: Bundle?) {
         self.init(name: storyboard.fileName, bundle: bundle)
     }
+    
+    func instantiateViewController(_ viewControllerType: UIViewController.Type) -> UIViewController {
+        return instantiateViewController(withIdentifier: String(describing: viewControllerType))
+    }
 }
 
 

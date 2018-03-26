@@ -11,19 +11,16 @@ import Firebase
 
 class HomeViewController: UIViewController {
     
+    var userSignedOut: ()->() = { }
+    
     @IBAction func onSignOutButtonTap(_ sender: UIBarButtonItem) {
         do {
            try Auth.auth().signOut()
+            userSignedOut()
         } catch let error {
             let alert = UIAlertController.alertWithTitle("Error", message: error.localizedDescription)
             present(alert, animated: true, completion: nil)
             return
-        }
-        
-        self.dismiss(animated: true) {
-            let storyboard = UIStoryboard(storyboard: .main, bundle: nil)
-            let initial = storyboard.instantiateInitialViewController()
-            UIApplication.shared.keyWindow?.rootViewController = initial
         }
     }
 }

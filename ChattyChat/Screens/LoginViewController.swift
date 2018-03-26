@@ -14,6 +14,8 @@ class LoginViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var authetificationSucceded: ()->() = { }
+    
 
     @IBAction func onLoginButtonTap(_ sender: UIButton) {
         guard let email = userNameTextField.text else {
@@ -35,7 +37,7 @@ class LoginViewController: UIViewController, SegueHandlerType {
             }
             
             if user != nil {
-                self?.performSegueWithIdentifier(.logInToHome, sender: nil)
+                self?.authetificationSucceded()
             }
         }
     }

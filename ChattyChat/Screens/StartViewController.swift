@@ -11,19 +11,14 @@ import Firebase
 
 class StartViewController: UIViewController, SegueHandlerType {
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if Auth.auth().currentUser != nil {
-            performSegueWithIdentifier(.startToHome, sender: nil)
-        }
-    }
+    var showLogin: ()->() = { }
+    var showSignUp: ()->() = { }
     
     @IBAction func onLoginButtonTap(_ sender: UIButton) {
-        performSegueWithIdentifier(.startToLogin, sender: nil)
+        showLogin()
     }
     @IBAction func onSignUpButtonTap(_ sender: UIButton) {
-        performSegueWithIdentifier(.startToSignUp, sender: nil)
+        showSignUp()
     }
 }
 
