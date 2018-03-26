@@ -26,6 +26,12 @@
 		B2729BAF20598C3C00A9504D /* UIImageView+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729BAA20598C3C00A9504D /* UIImageView+ImageCache.swift */; };
 		B2729BB020598C3C00A9504D /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729BAB20598C3C00A9504D /* SegueHandlerType.swift */; };
 		B2729BB120598C3C00A9504D /* UIAlertController+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729BAC20598C3C00A9504D /* UIAlertController+Default.swift */; };
+		B2BD645E205BB9B300384971 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD645D205BB9B300384971 /* AppCoordinator.swift */; };
+		B2BD6460205BC38D00384971 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD645F205BC38D00384971 /* RegistrationCoordinator.swift */; };
+		B2BD6462205BC3B400384971 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6461205BC3B400384971 /* CoordinatorProtocol.swift */; };
+		B2BD6464205BC4E200384971 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6463205BC4E200384971 /* HomeCoordinator.swift */; };
+		B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6465205BCDE600384971 /* RegistrationCoordinatorDelegate.swift */; };
+		B2BD6468205C011C00384971 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6467205C011C00384971 /* HomeCoordinatorDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +58,12 @@
 		B2729BAA20598C3C00A9504D /* UIImageView+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageCache.swift"; sourceTree = "<group>"; };
 		B2729BAB20598C3C00A9504D /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		B2729BAC20598C3C00A9504D /* UIAlertController+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Default.swift"; sourceTree = "<group>"; };
+		B2BD645D205BB9B300384971 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		B2BD645F205BC38D00384971 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
+		B2BD6461205BC3B400384971 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		B2BD6463205BC4E200384971 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		B2BD6465205BCDE600384971 /* RegistrationCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		B2BD6467205C011C00384971 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +95,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B253B1E3205C1A8E00FCC431 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				B2BD6465205BCDE600384971 /* RegistrationCoordinatorDelegate.swift */,
+				B2BD6467205C011C00384971 /* HomeCoordinatorDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		B253B1E4205C1A9B00FCC431 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				B253B1E3205C1A8E00FCC431 /* Delegates */,
+				B2BD645D205BB9B300384971 /* AppCoordinator.swift */,
+				B2BD645F205BC38D00384971 /* RegistrationCoordinator.swift */,
+				B2BD6463205BC4E200384971 /* HomeCoordinator.swift */,
+				B2BD6461205BC3B400384971 /* CoordinatorProtocol.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		B2729B532057F1B200A9504D = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +143,7 @@
 				B2729B6B2057F1B200A9504D /* Info.plist */,
 				B2729BA02059550900A9504D /* Model */,
 				B2729BA720598C3C00A9504D /* Extensions */,
+				B253B1E4205C1A9B00FCC431 /* Coordinator */,
 			);
 			path = ChattyChat;
 			sourceTree = "<group>";
@@ -301,16 +335,22 @@
 				B2729B9A2059073500A9504D /* LoginViewController.swift in Sources */,
 				B2729BAE20598C3C00A9504D /* String+CapitalisedFirst.swift in Sources */,
 				B2729B972059073500A9504D /* SignUpViewController.swift in Sources */,
+				B2BD6464205BC4E200384971 /* HomeCoordinator.swift in Sources */,
 				B2729BAF20598C3C00A9504D /* UIImageView+ImageCache.swift in Sources */,
 				B2729B992059073500A9504D /* StartViewController.swift in Sources */,
 				B2729BA3205975EE00A9504D /* UserTableViewCell.swift in Sources */,
 				B2729B602057F1B200A9504D /* AppDelegate.swift in Sources */,
 				B2729BAD20598C3C00A9504D /* UIStoryBoard+CustomInit.swift in Sources */,
+				B2BD6460205BC38D00384971 /* RegistrationCoordinator.swift in Sources */,
 				B2729B9D2059086100A9504D /* UsersViewController.swift in Sources */,
+				B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */,
+				B2BD6462205BC3B400384971 /* CoordinatorProtocol.swift in Sources */,
 				B2729B982059073500A9504D /* HomeViewController.swift in Sources */,
 				B2729BB020598C3C00A9504D /* SegueHandlerType.swift in Sources */,
+				B2BD645E205BB9B300384971 /* AppCoordinator.swift in Sources */,
 				B2729BB120598C3C00A9504D /* UIAlertController+Default.swift in Sources */,
 				B2729B9F2059118200A9504D /* User.swift in Sources */,
+				B2BD6468205C011C00384971 /* HomeCoordinatorDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

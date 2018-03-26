@@ -22,6 +22,8 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     var rootStorageReference: StorageReference!
     var usersProfileImagesReference: StorageReference!
     
+    var authetificationSucceded: ()->() = { }
+    
     
     @IBAction func onProfileImageTap(_ sender: UITapGestureRecognizer) {
         let imagePicker = UIImagePickerController()
@@ -55,7 +57,7 @@ class SignUpViewController: UIViewController, SegueHandlerType {
                 userRef.updateChildValues(["email": email,
                                            "name": name,
                                            "profileImage": urlString])
-                self?.performSegueWithIdentifier(.signUpToHome, sender: nil)
+                self?.authetificationSucceded()
             }
         })
     }
