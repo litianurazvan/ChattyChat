@@ -17,7 +17,7 @@ class HomeCoordinator: CoordinatorType {
     }
     
     func start() {
-        guard let homeController = storyboard.instantiateViewController(HomeViewController.self) as? HomeViewController else { return }
+        let homeController = storyboard.instantiateViewController(HomeViewController.self)
         homeController.userSignedOut = self.userSignedOut
         navigationController.childViewControllers.forEach { vc in
             vc.removeFromParentViewController()

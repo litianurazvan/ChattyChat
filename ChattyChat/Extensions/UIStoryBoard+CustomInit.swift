@@ -21,8 +21,8 @@ extension UIStoryboard {
         self.init(name: storyboard.fileName, bundle: bundle)
     }
     
-    func instantiateViewController(_ viewControllerType: UIViewController.Type) -> UIViewController {
-        return instantiateViewController(withIdentifier: String(describing: viewControllerType))
+    func instantiateViewController<T: UIViewController>(_ viewControllerType: T.Type) -> T {
+        return instantiateViewController(withIdentifier: String(describing: viewControllerType)) as! T
     }
 }
 

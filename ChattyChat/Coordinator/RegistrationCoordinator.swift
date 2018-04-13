@@ -17,7 +17,7 @@ class RegistrationCoordinator: CoordinatorType {
     }
     
     func start() {
-        guard let startController = storyboard.instantiateViewController(StartViewController.self) as? StartViewController else { return }
+        let startController = storyboard.instantiateViewController(StartViewController.self)
         startController.showLogin = self.showLogin
         startController.showSignUp = self.showSignUp
         navigationController.childViewControllers.forEach { vc in
@@ -27,13 +27,13 @@ class RegistrationCoordinator: CoordinatorType {
     }
     
     func showLogin() {
-        guard let loginController = storyboard.instantiateViewController(LoginViewController.self) as? LoginViewController else { return }
+        let loginController = storyboard.instantiateViewController(LoginViewController.self)
         loginController.authetificationSucceded = self.authentificationSucceded
         navigationController.show(loginController, sender: self)
     }
     
     func showSignUp() {
-        guard let signUpController = storyboard.instantiateViewController(SignUpViewController.self) as? SignUpViewController else { return }
+        let signUpController = storyboard.instantiateViewController(SignUpViewController.self)
         signUpController.authetificationSucceded = self.authentificationSucceded
         navigationController.show(signUpController, sender: self)
     }
