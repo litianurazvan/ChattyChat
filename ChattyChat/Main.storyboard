@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -73,31 +73,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="TEF-81-3eu">
-                                <rect key="frame" x="87.5" y="268.5" width="200" height="130"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="TEF-81-3eu">
+                                <rect key="frame" x="20" y="247" width="335" height="173"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8JT-it-zoc">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="70"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8JT-it-zoc">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="110"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r9h-aP-7rB">
-                                                <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="1xZ-XT-RpN"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y18-dv-305">
-                                                <rect key="frame" x="0.0" y="40" width="200" height="30"/>
+                                                <rect key="frame" x="0.0" y="60" width="335" height="50"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="3x2-z0-R1E"/>
-                                        </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTw-OR-jvY">
-                                        <rect key="frame" x="81" y="100" width="38" height="30"/>
+                                        <rect key="frame" x="0.0" y="140" width="335" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="onLoginButtonTap:" destination="Qyu-lN-htb" eventType="touchUpInside" id="xf4-ec-Rri"/>
@@ -110,6 +111,8 @@
                         <constraints>
                             <constraint firstItem="TEF-81-3eu" firstAttribute="centerX" secondItem="aCG-Hf-qxF" secondAttribute="centerX" id="2aa-gM-1K8"/>
                             <constraint firstItem="TEF-81-3eu" firstAttribute="centerY" secondItem="aCG-Hf-qxF" secondAttribute="centerY" id="5AG-IF-0Mn"/>
+                            <constraint firstItem="TEF-81-3eu" firstAttribute="leading" secondItem="aCG-Hf-qxF" secondAttribute="leading" constant="20" symbolic="YES" id="F0y-ZL-Ngy"/>
+                            <constraint firstItem="qSf-Rs-aJz" firstAttribute="trailing" secondItem="TEF-81-3eu" secondAttribute="trailing" constant="20" id="clx-Ng-OcJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qSf-Rs-aJz"/>
                     </view>
@@ -289,7 +292,6 @@
         <!--Navigation Controller-->
         <scene sceneID="pPo-MR-7Eh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jnY-AD-Ilz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BCc-cM-7LX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nMY-a0-MlB">
@@ -301,6 +303,7 @@
                         <segue destination="NRy-Wz-Hei" kind="relationship" relationship="rootViewController" id="ODQ-0o-Fa8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jnY-AD-Ilz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3788.8000000000002" y="76.46176911544228"/>
         </scene>
