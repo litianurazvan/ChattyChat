@@ -11,11 +11,29 @@ import Firebase
 
 class SignUpViewController: UIViewController, SegueHandlerType {
 
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var userNameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var retypePasswordTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField! {
+        didSet {
+            nameTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var userNameTextField: UITextField! {
+        didSet {
+            userNameTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var passwordTextField: UITextField! {
+        didSet {
+            passwordTextField.delegate = self
+        }
+    }
+    @IBOutlet weak var retypePasswordTextField: UITextField! {
+        didSet {
+            retypePasswordTextField.delegate = self
+        }
+    }
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var formStack: UIStackView!
     
     var rootReference: DatabaseReference!
     var usersReference: DatabaseReference!
@@ -23,7 +41,6 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     var usersProfileImagesReference: StorageReference!
     
     var authetificationSucceded: ()->() = { }
-    
     
     @IBAction func onProfileImageTap(_ sender: UITapGestureRecognizer) {
         let imagePicker = UIImagePickerController()
@@ -36,6 +53,9 @@ class SignUpViewController: UIViewController, SegueHandlerType {
         self?.profileImageView.image = image
     }
     
+    var observerShowKeyboard: NSObjectProtocol!
+    var observerHideKeyboard: NSObjectProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +63,46 @@ class SignUpViewController: UIViewController, SegueHandlerType {
         usersProfileImagesReference = rootStorageReference.child("user-profile-images")
         rootReference = Database.database().reference()
         usersReference = rootReference.child("users")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        observerShowKeyboard = NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: .main, using: keyboardWillShow(_:))
+        observerHideKeyboard = NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: .main, using: keyboardWillHide(_:))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(observerShowKeyboard)
+        NotificationCenter.default.removeObserver(observerHideKeyboard)
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }
+        let keyboardHeight = keyboardSize.height
+        
+        guard let activeField = activeField else { return }
+        let activeFieldHeight = activeField.frame.size.height
+        let activeFieldOrigin = formStack.convert(activeField.frame.origin, to: view)
+        let lowerLeftCorner = CGPoint(x: activeFieldOrigin.x, y: activeFieldOrigin.y + activeFieldHeight)
+        
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        
+        var visibleRect = scrollView.frame
+        visibleRect.size.height -= keyboardHeight
+        
+        if !visibleRect.contains(lowerLeftCorner) {
+            let y = activeFieldOrigin.y - visibleRect.height
+            let scrollPoint = CGPoint(x: 0, y: y)
+            scrollView.setContentOffset(scrollPoint, animated: true)
+        }
     }
     
     fileprivate func createUser(withName name: String, email: String, password: String, urlString: String?) {
@@ -112,6 +172,22 @@ class SignUpViewController: UIViewController, SegueHandlerType {
                 completion(imageUrlString)
             }
         }
+    }
+    
+    var activeField: UITextField?
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        activeField = textField
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        activeField?.resignFirstResponder()
+        activeField = nil
+        return true
     }
 }
 
