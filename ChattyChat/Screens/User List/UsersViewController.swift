@@ -14,6 +14,8 @@ class UsersViewController: UIViewController {
     
     var users = [User]()
     
+    var didSelectUser: (User) -> () = { _ in }
+    
     var rootReference: DatabaseReference!
     var usersReference: DatabaseReference!
     
@@ -58,7 +60,11 @@ extension UsersViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectUser(users[indexPath.row])
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 150
     }
 }

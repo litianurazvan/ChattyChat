@@ -141,7 +141,11 @@
                                 <action selector="onSignOutButtonTap:" destination="NRy-Wz-Hei" id="2YT-Zk-eAm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3Rd-zu-ID5"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3Rd-zu-ID5">
+                            <connections>
+                                <action selector="onComposeMessageButtonTap:" destination="NRy-Wz-Hei" id="hSS-Sq-dE1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYy-dz-xDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,7 +155,7 @@
         <!--Users View Controller-->
         <scene sceneID="6DJ-Wy-Luv">
             <objects>
-                <viewController id="k4d-Z2-gER" customClass="UsersViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsersViewController" id="k4d-Z2-gER" customClass="UsersViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZDu-Oe-kfW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

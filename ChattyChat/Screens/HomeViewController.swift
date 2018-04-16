@@ -12,6 +12,7 @@ import Firebase
 class HomeViewController: UIViewController {
     
     var userSignedOut: ()->() = { }
+    var showUsers: () -> () = { }
     
     @IBAction func onSignOutButtonTap(_ sender: UIBarButtonItem) {
         do {
@@ -22,5 +23,9 @@ class HomeViewController: UIViewController {
             present(alert, animated: true, completion: nil)
             return
         }
+    }
+    
+    @IBAction func onComposeMessageButtonTap(_ sender: UIBarButtonItem) {
+        showUsers()
     }
 }

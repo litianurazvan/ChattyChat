@@ -26,6 +26,8 @@
 		B2729BAF20598C3C00A9504D /* UIImageView+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729BAA20598C3C00A9504D /* UIImageView+ImageCache.swift */; };
 		B2729BB020598C3C00A9504D /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729BAB20598C3C00A9504D /* SegueHandlerType.swift */; };
 		B2729BB120598C3C00A9504D /* UIAlertController+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2729BAC20598C3C00A9504D /* UIAlertController+Default.swift */; };
+		B2A813ED2084D1BC00A2EED2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A813EC2084D1BC00A2EED2 /* MessageViewController.swift */; };
+		B2A813F62084D51300A2EED2 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A813F52084D51300A2EED2 /* MessageViewController.xib */; };
 		B2BD645E205BB9B300384971 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD645D205BB9B300384971 /* AppCoordinator.swift */; };
 		B2BD6460205BC38D00384971 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD645F205BC38D00384971 /* RegistrationCoordinator.swift */; };
 		B2BD6462205BC3B400384971 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6461205BC3B400384971 /* CoordinatorProtocol.swift */; };
@@ -57,6 +59,8 @@
 		B2729BAA20598C3C00A9504D /* UIImageView+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageCache.swift"; sourceTree = "<group>"; };
 		B2729BAB20598C3C00A9504D /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		B2729BAC20598C3C00A9504D /* UIAlertController+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Default.swift"; sourceTree = "<group>"; };
+		B2A813EC2084D1BC00A2EED2 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		B2A813F52084D51300A2EED2 /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		B2BD645D205BB9B300384971 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		B2BD645F205BC38D00384971 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
 		B2BD6461205BC3B400384971 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				B2729B962059073500A9504D /* Main.storyboard */,
+				B2A813EE2084D1C800A2EED2 /* UI */,
 				B2729B912059073500A9504D /* Screens */,
 				B2729B712057F46700A9504D /* Supporting files */,
 				B2729B6B2057F1B200A9504D /* Info.plist */,
@@ -162,13 +167,12 @@
 		B2729B912059073500A9504D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B2729B922059073500A9504D /* SignUpViewController.swift */,
+				B2A813F82084D55000A2EED2 /* User List */,
+				B2A813F72084D54100A2EED2 /* Sign Up */,
+				B2A813F92084D56400A2EED2 /* Chat */,
+				B2A813FA2084D57100A2EED2 /* Login */,
 				B2729B932059073500A9504D /* HomeViewController.swift */,
 				B2729B942059073500A9504D /* StartViewController.swift */,
-				B2729B952059073500A9504D /* LoginViewController.swift */,
-				B2729B9C2059086100A9504D /* UsersViewController.swift */,
-				B2729BA1205975EE00A9504D /* UserTableViewCell.swift */,
-				B2729BA2205975EE00A9504D /* UserTableViewCell.xib */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -191,6 +195,48 @@
 				B2729BAC20598C3C00A9504D /* UIAlertController+Default.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B2A813EE2084D1C800A2EED2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B2729BA1205975EE00A9504D /* UserTableViewCell.swift */,
+				B2729BA2205975EE00A9504D /* UserTableViewCell.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B2A813F72084D54100A2EED2 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				B2729B922059073500A9504D /* SignUpViewController.swift */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
+		B2A813F82084D55000A2EED2 /* User List */ = {
+			isa = PBXGroup;
+			children = (
+				B2729B9C2059086100A9504D /* UsersViewController.swift */,
+			);
+			path = "User List";
+			sourceTree = "<group>";
+		};
+		B2A813F92084D56400A2EED2 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B2A813F52084D51300A2EED2 /* MessageViewController.xib */,
+				B2A813EC2084D1BC00A2EED2 /* MessageViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		B2A813FA2084D57100A2EED2 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B2729B952059073500A9504D /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +306,7 @@
 				B2729B9B2059073500A9504D /* Main.storyboard in Resources */,
 				B2729BA4205975EE00A9504D /* UserTableViewCell.xib in Resources */,
 				B2570F72206933000021DD37 /* GoogleService-Info.plist in Resources */,
+				B2A813F62084D51300A2EED2 /* MessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +393,7 @@
 				B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */,
 				B2BD6462205BC3B400384971 /* CoordinatorProtocol.swift in Sources */,
 				B2729B982059073500A9504D /* HomeViewController.swift in Sources */,
+				B2A813ED2084D1BC00A2EED2 /* MessageViewController.swift in Sources */,
 				B2729BB020598C3C00A9504D /* SegueHandlerType.swift in Sources */,
 				B2BD645E205BB9B300384971 /* AppCoordinator.swift in Sources */,
 				B2729BB120598C3C00A9504D /* UIAlertController+Default.swift in Sources */,
