@@ -33,6 +33,9 @@ class MessageViewController: UIViewController {
     var messagesReference: DatabaseReference {
         return rootReference.child("messages")
     }
+    var userMessagesReference: DatabaseReference {
+        return rootReference.child("user-messages")
+    }
     
     var observerShowKeyboard: NSObjectProtocol!
     var observerHideKeyboard: NSObjectProtocol!
@@ -56,7 +59,13 @@ class MessageViewController: UIViewController {
                                        "sender_id": loggedInUserID,
                                        "timestamp": NSDate().timeIntervalSince1970
         ]
-        messagesReference.childByAutoId().setValue(message)
+        let messageChild =  messagesReference.childByAutoId()
+        messageChild.setValue(message)
+        
+        userMessagesReference.child(loggedInUserID).updateChildValues([messageChild.key: 1])
+        userMessagesReference.child(user.id).updateChildValues([messageChild.key: 1])
+        
+        
         messageTextField.text = nil
     }
 }
