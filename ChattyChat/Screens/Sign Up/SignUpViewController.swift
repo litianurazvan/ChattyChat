@@ -35,10 +35,15 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var formStack: UIStackView!
     
-    var rootReference: DatabaseReference!
-    var usersReference: DatabaseReference!
-    var rootStorageReference: StorageReference!
-    var usersProfileImagesReference: StorageReference!
+    var rootReference = Database.database().reference()
+    var usersReference: DatabaseReference {
+        return rootReference.child("users")
+    }
+    
+    var rootStorageReference = Storage.storage().reference()
+    var usersProfileImagesReference: StorageReference {
+        return rootStorageReference.child("user-profile-images")
+    }
     
     var authetificationSucceded: ()->() = { }
     
@@ -55,15 +60,6 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     
     var observerShowKeyboard: NSObjectProtocol!
     var observerHideKeyboard: NSObjectProtocol!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        rootStorageReference = Storage.storage().reference()
-        usersProfileImagesReference = rootStorageReference.child("user-profile-images")
-        rootReference = Database.database().reference()
-        usersReference = rootReference.child("users")
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -116,7 +112,9 @@ class SignUpViewController: UIViewController, SegueHandlerType {
                 let userRef = self?.usersReference.child(user.uid) {
                 userRef.updateChildValues(["email": email,
                                            "name": name,
-                                           "profileImage": urlString])
+                                           "profileImage": urlString ?? ""
+                    ])
+                
                 self?.authetificationSucceded()
             }
         })

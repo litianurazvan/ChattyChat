@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class MessageViewController: UIViewController {
+    
+    @IBOutlet weak var messageTextField: UITextField! {
+        didSet {
+            messageTextField.delegate = self
+        }
+    }
     
     @IBOutlet weak var messageStackBottomContraint: NSLayoutConstraint!
     
@@ -17,7 +24,15 @@ class MessageViewController: UIViewController {
             navigationItem.title = user.name
         }
     }
-    @IBOutlet weak var messageTextField: UITextField!
+    
+    var loggedInUserID: String {
+        return Auth.auth().currentUser!.uid
+    }
+    
+    var rootReference = Database.database().reference()
+    var messagesReference: DatabaseReference {
+        return rootReference.child("messages")
+    }
     
     var observerShowKeyboard: NSObjectProtocol!
     var observerHideKeyboard: NSObjectProtocol!
@@ -33,7 +48,27 @@ class MessageViewController: UIViewController {
         NotificationCenter.default.removeObserver(observerShowKeyboard)
         NotificationCenter.default.removeObserver(observerHideKeyboard)
     }
+    
+    @IBAction func onSendButtonPress(_ sender: UIButton) {
+        guard let content = messageTextField.text else { return }
+        let message: [String : Any] = ["content": content,
+                                       "receiver_id": user.id,
+                                       "sender_id": loggedInUserID,
+                                       "timestamp": NSDate().timeIntervalSince1970
+        ]
+        messagesReference.childByAutoId().setValue(message)
+        messageTextField.text = nil
+    }
+}
 
+extension MessageViewController: UITextFieldDelegate {
+    
+}
+
+
+// MARK:- Keyboard handling
+
+extension MessageViewController {
     func keyboardWillShow(_ notification: Notification) {
         guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }
         let keyboardHeight = keyboardSize.height
@@ -44,7 +79,4 @@ class MessageViewController: UIViewController {
         messageStackBottomContraint.constant = 0
     }
     
-    @IBAction func onSendButtonPress(_ sender: UIButton) {
-        messageTextField.resignFirstResponder()
-    }
 }

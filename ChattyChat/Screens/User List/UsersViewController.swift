@@ -31,8 +31,10 @@ class UsersViewController: UIViewController {
         usersReference = rootReference.child("users")
         
         usersReference.observe(.childAdded) { [weak self] snapshot in
-            guard let dictionary = snapshot.value as? [String: Any],
-                let user = User(dictionary: dictionary) else { return }
+            guard var dictionary = snapshot.value as? [String: Any] else { return }
+            dictionary["user_id"] = snapshot.key
+            
+            guard let user = User(dictionary: dictionary) else { return }
             
             self?.users.append(user)
             DispatchQueue.main.async {

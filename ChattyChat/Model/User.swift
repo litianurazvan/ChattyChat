@@ -9,6 +9,7 @@
 import Foundation
 
 struct User {
+    let id: String
     let name: String
     let email: String
     let profileImageUrlString: String?
@@ -18,9 +19,11 @@ extension User {
     init?(dictionary: [String: Any]) {
         guard let name = dictionary["name"] as? String else { return nil }
         guard let email = dictionary["email"] as? String else { return nil }
+        guard let id = dictionary["user_id"] as? String else { return nil }
         
         self.profileImageUrlString = dictionary["profileImage"] as? String
         self.name = name
         self.email = email
+        self.id = id
     }
 }
