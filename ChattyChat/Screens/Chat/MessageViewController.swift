@@ -55,7 +55,7 @@ class MessageViewController: UIViewController {
     @IBAction func onSendButtonPress(_ sender: UIButton) {
         guard let content = messageTextField.text else { return }
         let message: [String : Any] = ["content": content,
-                                       "receiver_id": user.id,
+                                       "recipient_id": user.id,
                                        "sender_id": loggedInUserID,
                                        "timestamp": NSDate().timeIntervalSince1970
         ]

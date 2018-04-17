@@ -34,6 +34,7 @@
 		B2BD6464205BC4E200384971 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6463205BC4E200384971 /* HomeCoordinator.swift */; };
 		B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6465205BCDE600384971 /* RegistrationCoordinatorDelegate.swift */; };
 		B2BD6468205C011C00384971 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6467205C011C00384971 /* HomeCoordinatorDelegate.swift */; };
+		B2C340C52086329C00FD0CDD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C340C42086329C00FD0CDD /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		B2BD6463205BC4E200384971 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B2BD6465205BCDE600384971 /* RegistrationCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		B2BD6467205C011C00384971 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		B2C340C42086329C00FD0CDD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FE4BF27CA8D884DC25DCFF25 /* Pods_ChattyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChattyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -167,10 +169,10 @@
 		B2729B912059073500A9504D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B2A813FA2084D57100A2EED2 /* Login */,
 				B2A813F82084D55000A2EED2 /* User List */,
 				B2A813F72084D54100A2EED2 /* Sign Up */,
 				B2A813F92084D56400A2EED2 /* Chat */,
-				B2A813FA2084D57100A2EED2 /* Login */,
 				B2729B932059073500A9504D /* HomeViewController.swift */,
 				B2729B942059073500A9504D /* StartViewController.swift */,
 			);
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				B2729B9E2059118200A9504D /* User.swift */,
+				B2C340C42086329C00FD0CDD /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				B2BD6464205BC4E200384971 /* HomeCoordinator.swift in Sources */,
 				B2729BAF20598C3C00A9504D /* UIImageView+ImageCache.swift in Sources */,
 				B2729B992059073500A9504D /* StartViewController.swift in Sources */,
+				B2C340C52086329C00FD0CDD /* Message.swift in Sources */,
 				B2729BA3205975EE00A9504D /* UserTableViewCell.swift in Sources */,
 				B2729B602057F1B200A9504D /* AppDelegate.swift in Sources */,
 				B2729BAD20598C3C00A9504D /* UIStoryBoard+CustomInit.swift in Sources */,
