@@ -16,9 +16,16 @@ struct User {
     let profileImageUrlString: String?
 }
 
-extension User: Hashable {
+extension User: Equatable, Hashable {
     var hashValue: Int {
         return id.hashValue
+    }
+    
+    public static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.email == rhs.email &&
+            lhs.profileImageUrlString == rhs.profileImageUrlString
     }
 }
 
