@@ -62,8 +62,8 @@ class MessageViewController: UIViewController {
         let messageChild =  messagesReference.childByAutoId()
         messageChild.setValue(message)
         
-        userMessagesReference.child(loggedInUserID).updateChildValues([messageChild.key: 1])
-        userMessagesReference.child(user.id).updateChildValues([messageChild.key: 1])
+        userMessagesReference.child(loggedInUserID).child(user.id).updateChildValues([messageChild.key: 1])
+        userMessagesReference.child(user.id).child(loggedInUserID).updateChildValues([messageChild.key: 1])
         
         
         messageTextField.text = nil

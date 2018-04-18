@@ -35,6 +35,9 @@
 		B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6465205BCDE600384971 /* RegistrationCoordinatorDelegate.swift */; };
 		B2BD6468205C011C00384971 /* HomeCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BD6467205C011C00384971 /* HomeCoordinatorDelegate.swift */; };
 		B2C340C52086329C00FD0CDD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C340C42086329C00FD0CDD /* Message.swift */; };
+		B2C340C720871CBF00FD0CDD /* ChatroomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C340C620871CBF00FD0CDD /* ChatroomCell.swift */; };
+		B2C340C920871CD600FD0CDD /* ChatroomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C340C820871CD600FD0CDD /* ChatroomCell.xib */; };
+		B2C340CB2087212E00FD0CDD /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C340CA2087212E00FD0CDD /* Chat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,9 @@
 		B2BD6465205BCDE600384971 /* RegistrationCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		B2BD6467205C011C00384971 /* HomeCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		B2C340C42086329C00FD0CDD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B2C340C620871CBF00FD0CDD /* ChatroomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomCell.swift; sourceTree = "<group>"; };
+		B2C340C820871CD600FD0CDD /* ChatroomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatroomCell.xib; sourceTree = "<group>"; };
+		B2C340CA2087212E00FD0CDD /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		FE4BF27CA8D884DC25DCFF25 /* Pods_ChattyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChattyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -184,6 +190,7 @@
 			children = (
 				B2729B9E2059118200A9504D /* User.swift */,
 				B2C340C42086329C00FD0CDD /* Message.swift */,
+				B2C340CA2087212E00FD0CDD /* Chat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,6 +212,8 @@
 			children = (
 				B2729BA1205975EE00A9504D /* UserTableViewCell.swift */,
 				B2729BA2205975EE00A9504D /* UserTableViewCell.xib */,
+				B2C340C620871CBF00FD0CDD /* ChatroomCell.swift */,
+				B2C340C820871CD600FD0CDD /* ChatroomCell.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -309,6 +318,7 @@
 				B2729B9B2059073500A9504D /* Main.storyboard in Resources */,
 				B2729BA4205975EE00A9504D /* UserTableViewCell.xib in Resources */,
 				B2570F72206933000021DD37 /* GoogleService-Info.plist in Resources */,
+				B2C340C920871CD600FD0CDD /* ChatroomCell.xib in Resources */,
 				B2A813F62084D51300A2EED2 /* MessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +394,7 @@
 			files = (
 				B2729B9A2059073500A9504D /* LoginViewController.swift in Sources */,
 				B2729BAE20598C3C00A9504D /* String+CapitalisedFirst.swift in Sources */,
+				B2C340C720871CBF00FD0CDD /* ChatroomCell.swift in Sources */,
 				B2729B972059073500A9504D /* SignUpViewController.swift in Sources */,
 				B2BD6464205BC4E200384971 /* HomeCoordinator.swift in Sources */,
 				B2729BAF20598C3C00A9504D /* UIImageView+ImageCache.swift in Sources */,
@@ -394,6 +405,7 @@
 				B2729BAD20598C3C00A9504D /* UIStoryBoard+CustomInit.swift in Sources */,
 				B2BD6460205BC38D00384971 /* RegistrationCoordinator.swift in Sources */,
 				B2729B9D2059086100A9504D /* UsersViewController.swift in Sources */,
+				B2C340CB2087212E00FD0CDD /* Chat.swift in Sources */,
 				B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */,
 				B2BD6462205BC3B400384971 /* CoordinatorProtocol.swift in Sources */,
 				B2729B982059073500A9504D /* HomeViewController.swift in Sources */,

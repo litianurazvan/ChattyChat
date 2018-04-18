@@ -10,25 +10,25 @@ import UIKit
 import Firebase
 
 class UsersViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
+        }
+    }
     
     var users = [User]()
     
     var didSelectUser: (User) -> () = { _ in }
     
-    var rootReference: DatabaseReference!
-    var usersReference: DatabaseReference!
+    var rootReference = Database.database().reference()
+    var usersReference: DatabaseReference {
+        return rootReference.child("users")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.tableFooterView = UIView()
-        tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
-        
-        rootReference = Database.database().reference()
-        usersReference = rootReference.child("users")
         
         usersReference.observe(.childAdded) { [weak self] snapshot in
             guard var dictionary = snapshot.value as? [String: Any] else { return }
@@ -41,6 +41,7 @@ class UsersViewController: UIViewController {
                 self?.tableView.reloadData()
             }
         }
+        
     }
 }
 

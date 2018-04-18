@@ -9,10 +9,17 @@
 import Foundation
 
 struct User {
+    
     let id: String
     let name: String
     let email: String
     let profileImageUrlString: String?
+}
+
+extension User: Hashable {
+    var hashValue: Int {
+        return id.hashValue
+    }
 }
 
 extension User {

@@ -17,17 +17,10 @@ class UserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        profileImageView.contentMode = .scaleAspectFit
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         profileImageView.image = nil

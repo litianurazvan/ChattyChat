@@ -189,13 +189,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CDG-Bw-PPw"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Vg9-W2-qZG"/>
                     <connections>
                         <outlet property="tableView" destination="DI2-ss-wNb" id="FJ3-Ec-eFV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qx-2i-i0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5691" y="74"/>
+            <point key="canvasLocation" x="5831" y="76"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="lCo-U1-JYw">
