@@ -18,25 +18,31 @@ class HomeCoordinator: CoordinatorType {
     
     func start() {
         let homeController = storyboard.instantiateViewController(HomeViewController.self)
-        homeController.userSignedOut = self.userSignedOut
-        homeController.showUsers = self.showUsers
+        homeController.userSignedOut = userSignedOut
+        homeController.showUsers = showUsers
+        homeController.showChatForUser = showChatForUser
         navigationController.childViewControllers.forEach { vc in
             vc.removeFromParentViewController()
         }
         navigationController.setViewControllers([homeController], animated: true)
     }
     
-    private func didSelect(_ user: User) {
+    
+    func showChatForUser(_ user: User) {
+        let messageController = ChatViewController()
+        messageController.user = user
+        self.navigationController.pushViewController(messageController, animated: true)
+    }
+    
+    private func didSelectUser(_ user: User) {
         navigationController.dismiss(animated: true) {
-            let messageController = MessageViewController()
-            messageController.user = user
-            self.navigationController.pushViewController(messageController, animated: true)
+            self.showChatForUser(user)
         }
     }
     
     private func showUsers() {
         let usersController = storyboard.instantiateViewController(UsersViewController.self)
-        usersController.didSelectUser = didSelect(_:)
+        usersController.didSelectUser = didSelectUser
         navigationController.present(usersController, animated: true, completion: nil)
     }
     

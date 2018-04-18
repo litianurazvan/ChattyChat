@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     
     var userSignedOut: ()->() = { }
     var showUsers: () -> () = { }
+    var showChatForUser: (User) -> () = { _ in }
     
     var rootReference = Database.database().reference()
     
@@ -140,6 +141,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = users[indexPath.row]
+        showChatForUser(user)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

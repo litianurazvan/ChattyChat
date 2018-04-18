@@ -10,10 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageViewController" customModule="ChattyChat" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="ChattyChat" customModuleProvider="target">
             <connections>
                 <outlet property="messageStackBottomContraint" destination="tSP-zv-vKp" id="OHd-Xc-CSN"/>
                 <outlet property="messageTextField" destination="To0-pP-aep" id="9KK-Lf-uys"/>
+                <outlet property="messagesTableView" destination="jbv-1p-5TH" id="AbZ-KH-eAp"/>
                 <outlet property="view" destination="5PM-Gt-1C7" id="NR8-Hq-C8l"/>
             </connections>
         </placeholder>

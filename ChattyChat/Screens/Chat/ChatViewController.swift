@@ -1,5 +1,5 @@
 //
-//  MessageViewController.swift
+//  ChatViewController.swift
 //  ChattyChat
 //
 //  Created by Razvan Litianu on 16/04/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MessageViewController: UIViewController {
+class ChatViewController: UIViewController {
     
     @IBOutlet weak var messageTextField: UITextField! {
         didSet {
@@ -18,6 +18,13 @@ class MessageViewController: UIViewController {
     }
     
     @IBOutlet weak var messageStackBottomContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var messagesTableView: UITableView! {
+        didSet {
+            messagesTableView.delegate = self
+            messagesTableView.dataSource = self
+        }
+    }
     
     var user: User! {
         didSet {
@@ -37,8 +44,34 @@ class MessageViewController: UIViewController {
         return rootReference.child("user-messages")
     }
     
+    var chatMessages: DatabaseReference {
+        return userMessagesReference.child(loggedInUserID).child(user.id)
+    }
+    
     var observerShowKeyboard: NSObjectProtocol!
     var observerHideKeyboard: NSObjectProtocol!
+    
+    var messages = [Message]()
+    
+    func getAllMessagesForCurrentChat(completion: @escaping (Bool) -> ()) {
+        chatMessages.observe(.childAdded) { snapshot in
+            let messageID = snapshot.key
+            let messageRef = self.messagesReference.child(messageID)
+            messageRef.observe(.value) { [unowned self] snapshot in
+                guard let messageDict = snapshot.value as? [String: Any], let message = Message(from: messageDict) else { return }
+                self.messages.append(message)
+                completion(true)
+            }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        getAllMessagesForCurrentChat { finished in
+            self.messagesTableView.reloadData()
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -70,14 +103,14 @@ class MessageViewController: UIViewController {
     }
 }
 
-extension MessageViewController: UITextFieldDelegate {
+extension ChatViewController: UITextFieldDelegate {
     
 }
 
 
 // MARK:- Keyboard handling
 
-extension MessageViewController {
+extension ChatViewController {
     func keyboardWillShow(_ notification: Notification) {
         guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }
         let keyboardHeight = keyboardSize.height
@@ -87,5 +120,19 @@ extension MessageViewController {
     func keyboardWillHide(_ notification: Notification) {
         messageStackBottomContraint.constant = 0
     }
+    
+}
+
+extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  UITableViewCell()
+        cell.textLabel?.text = messages[indexPath.row].content
+        return cell
+    }
+    
     
 }
