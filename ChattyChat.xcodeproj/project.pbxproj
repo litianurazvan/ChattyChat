@@ -38,6 +38,8 @@
 		B2C340C720871CBF00FD0CDD /* ChatroomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C340C620871CBF00FD0CDD /* ChatroomCell.swift */; };
 		B2C340C920871CD600FD0CDD /* ChatroomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C340C820871CD600FD0CDD /* ChatroomCell.xib */; };
 		B2C340CB2087212E00FD0CDD /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C340CA2087212E00FD0CDD /* Chat.swift */; };
+		B2C340CE2087717C00FD0CDD /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C340CC2087717C00FD0CDD /* MessageCell.swift */; };
+		B2C340CF2087717C00FD0CDD /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C340CD2087717C00FD0CDD /* MessageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		B2C340C620871CBF00FD0CDD /* ChatroomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomCell.swift; sourceTree = "<group>"; };
 		B2C340C820871CD600FD0CDD /* ChatroomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatroomCell.xib; sourceTree = "<group>"; };
 		B2C340CA2087212E00FD0CDD /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		B2C340CC2087717C00FD0CDD /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		B2C340CD2087717C00FD0CDD /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		FE4BF27CA8D884DC25DCFF25 /* Pods_ChattyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChattyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -214,6 +218,8 @@
 				B2729BA2205975EE00A9504D /* UserTableViewCell.xib */,
 				B2C340C620871CBF00FD0CDD /* ChatroomCell.swift */,
 				B2C340C820871CD600FD0CDD /* ChatroomCell.xib */,
+				B2C340CC2087717C00FD0CDD /* MessageCell.swift */,
+				B2C340CD2087717C00FD0CDD /* MessageCell.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				B2729B9B2059073500A9504D /* Main.storyboard in Resources */,
 				B2729BA4205975EE00A9504D /* UserTableViewCell.xib in Resources */,
 				B2570F72206933000021DD37 /* GoogleService-Info.plist in Resources */,
+				B2C340CF2087717C00FD0CDD /* MessageCell.xib in Resources */,
 				B2C340C920871CD600FD0CDD /* ChatroomCell.xib in Resources */,
 				B2A813F62084D51300A2EED2 /* ChatViewController.xib in Resources */,
 			);
@@ -409,6 +416,7 @@
 				B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */,
 				B2BD6462205BC3B400384971 /* CoordinatorProtocol.swift in Sources */,
 				B2729B982059073500A9504D /* HomeViewController.swift in Sources */,
+				B2C340CE2087717C00FD0CDD /* MessageCell.swift in Sources */,
 				B2A813ED2084D1BC00A2EED2 /* ChatViewController.swift in Sources */,
 				B2729BB020598C3C00A9504D /* SegueHandlerType.swift in Sources */,
 				B2BD645E205BB9B300384971 /* AppCoordinator.swift in Sources */,

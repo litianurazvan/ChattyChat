@@ -23,6 +23,7 @@ class ChatViewController: UIViewController {
         didSet {
             messagesTableView.delegate = self
             messagesTableView.dataSource = self
+            messagesTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
         }
     }
     
@@ -53,12 +54,17 @@ class ChatViewController: UIViewController {
     
     var messages = [Message]()
     
+    var sortedMessages: [Message] {
+        return messages.sorted { $0.timeStamp > $1.timeStamp }
+    }
+    
     func getAllMessagesForCurrentChat(completion: @escaping (Bool) -> ()) {
         chatMessages.observe(.childAdded) { snapshot in
             let messageID = snapshot.key
             let messageRef = self.messagesReference.child(messageID)
             messageRef.observe(.value) { [unowned self] snapshot in
                 guard let messageDict = snapshot.value as? [String: Any], let message = Message(from: messageDict) else { return }
+                
                 self.messages.append(message)
                 completion(true)
             }
@@ -67,6 +73,10 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messagesTableView.rowHeight = UITableViewAutomaticDimension
+        messagesTableView.estimatedRowHeight = 140
+        messagesTableView.transform = CGAffineTransform(rotationAngle: (-.pi))
+        messagesTableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, messagesTableView.bounds.size.width - 10)
         
         getAllMessagesForCurrentChat { finished in
             self.messagesTableView.reloadData()
@@ -125,14 +135,26 @@ extension ChatViewController {
 
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return sortedMessages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  UITableViewCell()
-        cell.textLabel?.text = messages[indexPath.row].content
+        guard let cell =  tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else { return  UITableViewCell() }
+        cell.transform = CGAffineTransform(rotationAngle: (-.pi))
+        let text = sortedMessages[indexPath.row].content
+        cell.messageLabel.text = text
+        let size = estimatedSizeForText(text: text)
+
+        let screenWidth = UIScreen.main.bounds.width
+        if size.width < screenWidth * 0.75 {
+            cell.messageLabelWidth.constant = size.width + 17
+        }
         return cell
     }
-    
-    
+
+    func estimatedSizeForText(text: String) -> CGSize {
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [.font: UIFont.systemFont(ofSize: 17)], context: nil).size
+    }
 }
