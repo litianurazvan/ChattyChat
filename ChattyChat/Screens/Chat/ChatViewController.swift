@@ -24,6 +24,9 @@ class ChatViewController: UIViewController {
             messagesTableView.delegate = self
             messagesTableView.dataSource = self
             messagesTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
+            messagesTableView.rowHeight = UITableViewAutomaticDimension
+            messagesTableView.estimatedRowHeight = 140
+            messagesTableView.transform = CGAffineTransform(rotationAngle: (-.pi))
         }
     }
     
@@ -71,12 +74,13 @@ class ChatViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        messagesTableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, messagesTableView.bounds.size.width - 10)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        messagesTableView.rowHeight = UITableViewAutomaticDimension
-        messagesTableView.estimatedRowHeight = 140
-        messagesTableView.transform = CGAffineTransform(rotationAngle: (-.pi))
-        messagesTableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, messagesTableView.bounds.size.width - 10)
         
         getAllMessagesForCurrentChat { finished in
             self.messagesTableView.reloadData()
@@ -95,7 +99,7 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.removeObserver(observerHideKeyboard)
     }
     
-    @IBAction func onSendButtonPress(_ sender: UIButton) {
+    private func sendMessage() {
         guard let content = messageTextField.text else { return }
         let message: [String : Any] = ["content": content,
                                        "recipient_id": user.id,
@@ -111,10 +115,17 @@ class ChatViewController: UIViewController {
         
         messageTextField.text = nil
     }
+    
+    @IBAction func onSendButtonPress(_ sender: UIButton) {
+        sendMessage()
+    }
 }
 
 extension ChatViewController: UITextFieldDelegate {
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        sendMessage()
+        return true
+    }
 }
 
 
@@ -141,19 +152,24 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell =  tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageCell else { return  UITableViewCell() }
         cell.transform = CGAffineTransform(rotationAngle: (-.pi))
-        let text = sortedMessages[indexPath.row].content
-        cell.messageLabel.text = text
-        let size = estimatedSizeForText(text: text)
-
+        
+        let message = sortedMessages[indexPath.row]
+        cell.messageLabel.text = message.content
+        cell.messageLabel.textColor = message.senderID == loggedInUserID ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        cell.bubbleView.backgroundColor = message.senderID == loggedInUserID ? #colorLiteral(red: 0.2352941176, green: 0.5882352941, blue: 0.9490196078, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        cell.stackView.alignment = message.senderID == loggedInUserID ? .trailing : .leading
+        
+        let size = estimatedSizeForText(text: message.content)
         let screenWidth = UIScreen.main.bounds.width
-        if size.width < screenWidth * 0.75 {
-            cell.messageLabelWidth.constant = size.width + 17
-        }
+        
+        cell.bubbleViewWidth.constant = size.width < screenWidth * 0.75 ? size.width + 17 : screenWidth * 0.75
+        
         return cell
     }
 
     func estimatedSizeForText(text: String) -> CGSize {
-        let size = CGSize(width: 200, height: 1000)
+        let screenWidth = UIScreen.main.bounds.width
+        let size = CGSize(width: screenWidth * 0.75, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [.font: UIFont.systemFont(ofSize: 17)], context: nil).size
     }

@@ -19,43 +19,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="555" height="299.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifv-zj-53q">
-                        <rect key="frame" x="345" y="5" width="200" height="289.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="P2L-Jb-YE5">
+                        <rect key="frame" x="8" y="8" width="539" height="283.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHM-ug-gJ7">
-                                <rect key="frame" x="8" y="8" width="184" height="273.5"/>
-                                <string key="text">elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifv-zj-53q">
+                                <rect key="frame" x="289" y="0.0" width="250" height="283.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHM-ug-gJ7">
+                                        <rect key="frame" x="8" y="8" width="234" height="267.5"/>
+                                        <string key="text">elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23529411759999999" green="0.58823529409999997" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="aHM-ug-gJ7" secondAttribute="trailing" constant="8" id="RA2-vv-7ab"/>
+                                    <constraint firstItem="aHM-ug-gJ7" firstAttribute="leading" secondItem="Ifv-zj-53q" secondAttribute="leading" constant="8" id="SQu-eM-wwg"/>
+                                    <constraint firstAttribute="bottom" secondItem="aHM-ug-gJ7" secondAttribute="bottom" constant="8" id="XhY-5U-OHl"/>
+                                    <constraint firstAttribute="width" constant="250" id="nHJ-P1-hkD"/>
+                                    <constraint firstItem="aHM-ug-gJ7" firstAttribute="top" secondItem="Ifv-zj-53q" secondAttribute="top" constant="8" id="psT-sc-A3B"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.23529411759999999" green="0.58823529409999997" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="aHM-ug-gJ7" secondAttribute="trailing" constant="8" id="RA2-vv-7ab"/>
-                            <constraint firstItem="aHM-ug-gJ7" firstAttribute="leading" secondItem="Ifv-zj-53q" secondAttribute="leading" constant="8" id="SQu-eM-wwg"/>
-                            <constraint firstAttribute="bottom" secondItem="aHM-ug-gJ7" secondAttribute="bottom" constant="8" id="XhY-5U-OHl"/>
-                            <constraint firstAttribute="width" constant="200" id="nHJ-P1-hkD"/>
-                            <constraint firstItem="aHM-ug-gJ7" firstAttribute="top" secondItem="Ifv-zj-53q" secondAttribute="top" constant="8" id="psT-sc-A3B"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="15"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gJz-m3-QOD" firstAttribute="trailing" secondItem="Ifv-zj-53q" secondAttribute="trailing" constant="10" id="IYf-nU-Y8V"/>
-                    <constraint firstItem="gJz-m3-QOD" firstAttribute="bottom" secondItem="Ifv-zj-53q" secondAttribute="bottom" constant="5" id="KD4-Hg-6pZ"/>
-                    <constraint firstItem="Ifv-zj-53q" firstAttribute="top" secondItem="gJz-m3-QOD" secondAttribute="top" constant="5" id="WQT-BA-ywX"/>
+                    <constraint firstItem="P2L-Jb-YE5" firstAttribute="leading" secondItem="gJz-m3-QOD" secondAttribute="leading" constant="8" id="94H-1Z-EXE"/>
+                    <constraint firstItem="P2L-Jb-YE5" firstAttribute="top" secondItem="gJz-m3-QOD" secondAttribute="top" constant="8" id="CGl-IE-4dy"/>
+                    <constraint firstItem="gJz-m3-QOD" firstAttribute="trailing" secondItem="P2L-Jb-YE5" secondAttribute="trailing" constant="8" id="X45-u7-XUZ"/>
+                    <constraint firstAttribute="bottom" secondItem="P2L-Jb-YE5" secondAttribute="bottom" constant="8" id="tPz-b1-FEW"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="gJz-m3-QOD"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bubbleView" destination="Ifv-zj-53q" id="2f2-Vx-dJa"/>
+                <outlet property="bubbleViewWidth" destination="nHJ-P1-hkD" id="pL8-nI-C9W"/>
                 <outlet property="messageLabel" destination="aHM-ug-gJ7" id="dBM-FL-OS7"/>
-                <outlet property="messageLabelWidth" destination="nHJ-P1-hkD" id="pL8-nI-C9W"/>
+                <outlet property="stackView" destination="P2L-Jb-YE5" id="Jt6-gy-ymb"/>
             </connections>
             <point key="canvasLocation" x="142.5" y="180"/>
         </tableViewCell>

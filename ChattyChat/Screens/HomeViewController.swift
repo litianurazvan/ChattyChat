@@ -37,8 +37,11 @@ class HomeViewController: UIViewController {
         return rootReference.child("users")
     }
     
+    var currentUserID: String{
+       return Auth.auth().currentUser!.uid
+    }
+    
     var currentUserMessagesReference: DatabaseReference {
-        let currentUserID = Auth.auth().currentUser!.uid
         return userMessagesReference.child(currentUserID)
     }
     
@@ -94,6 +97,14 @@ class HomeViewController: UIViewController {
         
         getAllRecipients { finished in
             self.chatTableView.reloadData()
+        }
+        
+        usersReference.child(currentUserID).observe(.value) { snapshot in
+            guard let currentUserInfo = snapshot.value as? [String: Any] else { return }
+            
+            DispatchQueue.main.async {
+                self.navigationItem.title = currentUserInfo["name"] as? String
+            }
         }
         
     }
