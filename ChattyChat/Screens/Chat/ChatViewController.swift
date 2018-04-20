@@ -30,10 +30,15 @@ class ChatViewController: UIViewController {
         }
     }
     
-    var user: User! {
-        didSet {
-            navigationItem.title = user.name
-        }
+    var user: User
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: "ChatViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     var loggedInUserID: String {
@@ -81,6 +86,7 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = user.name
         
         getAllMessagesForCurrentChat { finished in
             self.messagesTableView.reloadData()
@@ -106,6 +112,7 @@ class ChatViewController: UIViewController {
                                        "sender_id": loggedInUserID,
                                        "timestamp": NSDate().timeIntervalSince1970
         ]
+        
         let messageChild =  messagesReference.childByAutoId()
         messageChild.setValue(message)
         

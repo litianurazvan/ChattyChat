@@ -29,8 +29,7 @@ class HomeCoordinator: CoordinatorType {
     
     
     func showChatForUser(_ user: User) {
-        let messageController = ChatViewController()
-        messageController.user = user
+        let messageController = ChatViewController(user: user)
         self.navigationController.pushViewController(messageController, animated: true)
     }
     
