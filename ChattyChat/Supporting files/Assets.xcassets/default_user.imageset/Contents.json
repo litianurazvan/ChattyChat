@@ -2,7 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "585e4bf3cb11b227491c339a.png"
+      "filename" : "585e4bf3cb11b227491c339a.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
@@ -10,6 +19,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "compression-type" : "lossless"
+    "compression-type" : "automatic"
   }
 }

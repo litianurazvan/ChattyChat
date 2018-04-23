@@ -10,33 +10,38 @@ import UIKit
 import Firebase
 
 class UsersViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
+        }
+    }
     
     var users = [User]()
     
-    var rootReference: DatabaseReference!
-    var usersReference: DatabaseReference!
+    var didSelectUser: (User) -> () = { _ in }
+    
+    var rootReference = Database.database().reference()
+    var usersReference: DatabaseReference {
+        return rootReference.child("users")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.tableFooterView = UIView()
-        tableView.register(UINib(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
-        
-        rootReference = Database.database().reference()
-        usersReference = rootReference.child("users")
-        
         usersReference.observe(.childAdded) { [weak self] snapshot in
-            guard let dictionary = snapshot.value as? [String: Any],
-                let user = User(dictionary: dictionary) else { return }
+            guard var dictionary = snapshot.value as? [String: Any] else { return }
+            dictionary["user_id"] = snapshot.key
+            
+            guard let user = User(dictionary: dictionary) else { return }
             
             self?.users.append(user)
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
+        
     }
 }
 
@@ -58,7 +63,11 @@ extension UsersViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectUser(users[indexPath.row])
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 150
     }
 }

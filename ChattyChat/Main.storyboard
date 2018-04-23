@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rla-Rj-mIV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -86,7 +86,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y18-dv-305">
                                                 <rect key="frame" x="0.0" y="50" width="335" height="40"/>
@@ -132,7 +132,19 @@
                     <view key="view" contentMode="scaleToFill" id="l4i-LY-faN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wqT-zN-thd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sHN-7R-iDm" firstAttribute="bottom" secondItem="wqT-zN-thd" secondAttribute="bottom" id="54j-Bb-wvh"/>
+                            <constraint firstItem="wqT-zN-thd" firstAttribute="leading" secondItem="sHN-7R-iDm" secondAttribute="leading" id="Yy8-hQ-ke9"/>
+                            <constraint firstItem="sHN-7R-iDm" firstAttribute="trailing" secondItem="wqT-zN-thd" secondAttribute="trailing" id="fQX-z9-m5e"/>
+                            <constraint firstItem="wqT-zN-thd" firstAttribute="top" secondItem="sHN-7R-iDm" secondAttribute="top" id="xXa-J2-mC3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sHN-7R-iDm"/>
                     </view>
                     <navigationItem key="navigationItem" id="5ME-Zf-IWL">
@@ -141,8 +153,15 @@
                                 <action selector="onSignOutButtonTap:" destination="NRy-Wz-Hei" id="2YT-Zk-eAm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3Rd-zu-ID5"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="3Rd-zu-ID5">
+                            <connections>
+                                <action selector="onComposeMessageButtonTap:" destination="NRy-Wz-Hei" id="hSS-Sq-dE1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="chatTableView" destination="wqT-zN-thd" id="lSz-yx-mT3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xYy-dz-xDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -151,7 +170,7 @@
         <!--Users View Controller-->
         <scene sceneID="6DJ-Wy-Luv">
             <objects>
-                <viewController id="k4d-Z2-gER" customClass="UsersViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsersViewController" id="k4d-Z2-gER" customClass="UsersViewController" customModule="ChattyChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZDu-Oe-kfW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,13 +189,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CDG-Bw-PPw"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Vg9-W2-qZG"/>
                     <connections>
                         <outlet property="tableView" destination="DI2-ss-wNb" id="FJ3-Ec-eFV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qx-2i-i0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5691" y="74"/>
+            <point key="canvasLocation" x="5831" y="76"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="lCo-U1-JYw">
@@ -224,7 +244,7 @@
                                                         <rect key="frame" x="0.0" y="60" width="330" height="50"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fWX-zQ-qlp">
                                                         <rect key="frame" x="0.0" y="120" width="330" height="50"/>
@@ -281,7 +301,6 @@
                         <outlet property="profileImageView" destination="MLd-DU-LWF" id="kZE-xU-vNz"/>
                         <outlet property="retypePasswordTextField" destination="qnH-0b-vzM" id="2Q6-w8-E9Z"/>
                         <outlet property="scrollView" destination="oIX-4P-UDs" id="6Zd-PG-fls"/>
-                        <outlet property="signup" destination="pDF-ra-G6a" id="6zb-a6-vDC"/>
                         <outlet property="userNameTextField" destination="kgd-NR-ICG" id="wO0-h1-2Av"/>
                     </connections>
                 </viewController>
