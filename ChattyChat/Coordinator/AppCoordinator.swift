@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AppCoordinator: CoordinatorType {
-    var delegate: RegistrationCoordinatorDelegate?
+    weak var delegate: RegistrationCoordinatorDelegate?
     
     var navigationController: UINavigationController
     var childCoordinators = [CoordinatorType]()

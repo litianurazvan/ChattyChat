@@ -31,6 +31,7 @@ class SignUpViewController: UIViewController, SegueHandlerType {
             retypePasswordTextField.delegate = self
         }
     }
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var formStack: UIStackView!
@@ -57,28 +58,25 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     lazy var didSelectImage: (UIImage) -> () = { [weak self] image in
         self?.profileImageView.image = image
     }
-    
-    var observerShowKeyboard: NSObjectProtocol!
-    var observerHideKeyboard: NSObjectProtocol!
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        observerShowKeyboard = NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: .main, using: keyboardWillShow(_:))
-        observerHideKeyboard = NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: .main, using: keyboardWillHide(_:))
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(observerShowKeyboard)
-        NotificationCenter.default.removeObserver(observerHideKeyboard)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }
         let keyboardHeight = keyboardSize.height
         
@@ -108,8 +106,7 @@ class SignUpViewController: UIViewController, SegueHandlerType {
                 self?.present(alert, animated: true, completion: nil)
             }
             
-            if let user = user,
-                let userRef = self?.usersReference.child(user.uid) {
+            if let user = user, let userRef = self?.usersReference.child(user.uid) {
                 userRef.updateChildValues(["email": email,
                                            "name": name,
                                            "profileImage": urlString ?? ""
@@ -193,7 +190,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             didSelectImage(editedImage)
