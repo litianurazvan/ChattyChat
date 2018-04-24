@@ -13,5 +13,6 @@ target 'ChattyChat' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Crash'
+  pod 'Crashlytics'
 
 end
