@@ -270,6 +270,7 @@
 				B2729B5A2057F1B200A9504D /* Resources */,
 				DFC6797EE10725E4F80C8242 /* [CP] Embed Pods Frameworks */,
 				B21D5E06208F9F8900CA37A6 /* ShellScript */,
+				651CF99DCF826B8F3FFF8401 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -333,6 +334,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		651CF99DCF826B8F3FFF8401 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChattyChat/Pods-ChattyChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B21D5E06208F9F8900CA37A6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
