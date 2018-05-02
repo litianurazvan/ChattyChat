@@ -34,7 +34,7 @@ class HomeViewModel {
     }
     
     public func getNewChatID(for user: User) -> String {
-        return chatService.getIdForNewChat(with: user)
+        return chatService.createNewChat(with: user)
     }
     
     var chatsUpdated: ([String]) -> () = { _ in }
@@ -60,9 +60,8 @@ class HomeViewModel {
     
     public func getSortedChatInfo(completion: @escaping (Bool) -> ()) {
         chatService.getChats { [unowned self] chat in
-            chat.keys.forEach({ key in
-                self.chats[key] = chat[key]
-            })
+            
+            self.chats.merge(chat) { (_, new) in new }
             self.sortedChatIDs = self.sortedByDateIDs(from: self.chats)
             completion(true)
         }
@@ -70,7 +69,7 @@ class HomeViewModel {
     
     func getChatID(for user: User) -> String? {
         for id in sortedChatIDs {
-            if let chat = chatForID(id), chat.isOnlyMember(userID: user.id) {
+            if let chat = chatForID(id), chat.containsOnly(userID: user.id) {
                 return id
             }
         }

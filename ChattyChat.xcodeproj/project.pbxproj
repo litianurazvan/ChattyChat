@@ -166,6 +166,7 @@
 				B2729B962059073500A9504D /* Main.storyboard */,
 				B2A813EE2084D1C800A2EED2 /* UI */,
 				B2729B912059073500A9504D /* Screens */,
+				B2E616B42099DFAA0083B14B /* Service */,
 				B2729B712057F46700A9504D /* Supporting files */,
 				B2729B6B2057F1B200A9504D /* Info.plist */,
 				B2729BA02059550900A9504D /* Model */,
@@ -197,7 +198,6 @@
 				B2A813F92084D56400A2EED2 /* Chat */,
 				B2729B942059073500A9504D /* StartViewController.swift */,
 				B2E616A9209069EA0083B14B /* UserManager.swift */,
-				B2E616AF2090CAEF0083B14B /* ChatService.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -278,6 +278,14 @@
 				B2E616A7209065130083B14B /* HomeViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		B2E616B42099DFAA0083B14B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B2E616AF2090CAEF0083B14B /* ChatService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

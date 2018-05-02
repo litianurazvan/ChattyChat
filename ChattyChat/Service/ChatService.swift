@@ -30,7 +30,7 @@ struct ChatService {
         return rootReference.child("user_chats").child(currentUser.id)
     }
     
-    public func getIdForNewChat(with recipient : User) -> String {
+    public func createNewChat(with recipient : User) -> String {
         let newChatRef = chatsReference.childByAutoId()
         let membersRef = newChatRef.child("members")
         

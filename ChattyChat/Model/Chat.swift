@@ -36,7 +36,8 @@ extension Chat {
 }
 
 extension Chat {
-    func isOnlyMember(userID: String) -> Bool {
+    func containsOnly(userID: String) -> Bool {
+        // Taking into consideration that members list will include the current user id
         return members.keys.contains(userID) && members.keys.count == 2 ? true : false
     }
 }
