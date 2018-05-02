@@ -125,7 +125,7 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func onSendButtonPress(_ sender: UIButton) {
-        guard let content = messageTextField.text else { return }
+        guard let content = messageTextField.text, !content.isEmpty else { return }
         send(message: content)
     }
 }
