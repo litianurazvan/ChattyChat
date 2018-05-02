@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Firebase
 
 class SignUpViewController: UIViewController, SegueHandlerType {
+    
+    //MARK:- IBOutlets
 
     @IBOutlet weak var nameTextField: UITextField! {
         didSet {
@@ -35,18 +36,11 @@ class SignUpViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var formStack: UIStackView!
-    
-    var rootReference = Database.database().reference()
-    var usersReference: DatabaseReference {
-        return rootReference.child("users")
-    }
-    
-    var rootStorageReference = Storage.storage().reference()
-    var usersProfileImagesReference: StorageReference {
-        return rootStorageReference.child("user-profile-images")
-    }
+
+    //MARK:- Dependencies
     
     var authetificationSucceded: ()->() = { }
+    var userManager: UserManager!
     
     @IBAction func onProfileImageTap(_ sender: UITapGestureRecognizer) {
         let imagePicker = UIImagePickerController()
@@ -99,24 +93,6 @@ class SignUpViewController: UIViewController, SegueHandlerType {
         }
     }
     
-    fileprivate func createUser(withName name: String, email: String, password: String, urlString: String?) {
-        Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] user, error in
-            if let error = error {
-                let alert = UIAlertController.alertWithTitle("Error", message: error.localizedDescription)
-                self?.present(alert, animated: true, completion: nil)
-            }
-            
-            if let user = user, let userRef = self?.usersReference.child(user.uid) {
-                userRef.updateChildValues(["email": email,
-                                           "name": name,
-                                           "profileImage": urlString ?? ""
-                    ])
-                
-                self?.authetificationSucceded()
-            }
-        })
-    }
-    
     @IBAction func onSignUpButtonPress(_ sender: UIButton) {
         guard let name = nameTextField.text else {
             let alert = UIAlertController.alertWithTitle("Please enter name", message: "Missing name")
@@ -142,33 +118,32 @@ class SignUpViewController: UIViewController, SegueHandlerType {
             return
         }
         
-        
-        uploadProfileImage { [weak self] urlString in
-            self?.createUser(withName: name,
-                             email: email,
-                             password: password,
-                             urlString: urlString)
+        guard let profileImage = profileImageView.image, profileImage != #imageLiteral(resourceName: "default_user") else {
+            let alert = UIAlertController.alertWithTitle("Error", message: "Please select a profile picture")
+            self.present(alert, animated: true, completion: nil)
+            return
         }
-
-    }
-    
-    func uploadProfileImage(completion: @escaping (String?)->()) {
-        guard let profileImage = profileImageView.image, profileImage != #imageLiteral(resourceName: "default_user") else { completion(nil); return }
-        guard let data = UIImageJPEGRepresentation(profileImage, 0.1) else { completion(nil); return }
-        let imageStorageRef = usersProfileImagesReference.child("\(NSUUID().uuidString).png")
         
-        imageStorageRef.putData(data, metadata: nil) { [weak self] metadata, error in
-            if let error = error {
-                let alert = UIAlertController.alertWithTitle("Error", message: error.localizedDescription)
+        userManager.uploadProfileImage(profileImage) { [weak self] result in
+            switch result {
+            case let .success(urlString):
+                self?.userManager.createUser(withName: name, email: email, password: password, urlString: urlString) { result in
+                    switch result {
+                    case .success:
+                        self?.authetificationSucceded()
+                    case let .failure(error):
+                        let alert = UIAlertController.alertWithTitle("Password Incorrect", message: error.localizedDescription)
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }
+            case let .failure(error):
+                let alert = UIAlertController.alertWithTitle("Password Incorrect", message: error.localizedDescription)
                 self?.present(alert, animated: true, completion: nil)
             }
-            
-            if let imageUrlString = metadata?.downloadURL()?.absoluteString {
-                completion(imageUrlString)
-            }
         }
     }
-    
+
     var activeField: UITextField?
 }
 

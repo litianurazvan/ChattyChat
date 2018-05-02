@@ -10,7 +10,6 @@ import Foundation
 
 struct Message {
     let content: String
-    let recipientID: String
     let senderID: String
     let timeStamp: Double
 }
@@ -18,12 +17,10 @@ struct Message {
 extension Message {
     init?(from dictionary: [String: Any]) {
         guard let content = dictionary["content"] as? String else { return nil }
-        guard let recipientID = dictionary["recipient_id"] as? String else { return nil }
         guard let senderID = dictionary["sender_id"] as? String else { return nil }
         guard let timeStamp = dictionary["timestamp"] as? Double else { return nil }
         
         self.content = content
-        self.recipientID = recipientID
         self.senderID = senderID
         self.timeStamp = timeStamp
     }

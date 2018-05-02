@@ -12,6 +12,8 @@ class RegistrationCoordinator: CoordinatorType {
     var navigationController: UINavigationController
     weak var delegate: RegistrationCoordinatorDelegate?
     
+    var userManager: UserManager!
+    
     init(with navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -28,12 +30,14 @@ class RegistrationCoordinator: CoordinatorType {
     
     func showLogin() {
         let loginController = storyboard.instantiateViewController(LoginViewController.self)
+        loginController.userManager = userManager
         loginController.authetificationSucceded = self.authentificationSucceded
         navigationController.show(loginController, sender: self)
     }
     
     func showSignUp() {
         let signUpController = storyboard.instantiateViewController(SignUpViewController.self)
+        signUpController.userManager = userManager
         signUpController.authetificationSucceded = self.authentificationSucceded
         navigationController.show(signUpController, sender: self)
     }

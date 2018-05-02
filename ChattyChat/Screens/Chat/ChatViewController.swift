@@ -30,10 +30,11 @@ class ChatViewController: UIViewController {
         }
     }
     
-    var user: User
+    var chatID: String
+    var chatViewModel: ChatViewModel!
     
-    init(user: User) {
-        self.user = user
+    init(chatID: String) {
+        self.chatID = chatID
         super.init(nibName: "ChatViewController", bundle: nil)
     }
     
@@ -41,20 +42,15 @@ class ChatViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var loggedInUserID: String {
-        return Auth.auth().currentUser!.uid
-    }
+    var currentUserID: String!
     
     var rootReference = Database.database().reference()
-    var messagesReference: DatabaseReference {
-        return rootReference.child("messages")
-    }
-    var userMessagesReference: DatabaseReference {
-        return rootReference.child("user-messages")
-    }
+
+    var chatMessages: DatabaseReference { return rootReference.child("chat-messages").child(chatID) }
+    var chatMessagesHandler: DatabaseHandle?
     
-    var chatMessages: DatabaseReference {
-        return userMessagesReference.child(loggedInUserID).child(user.id)
+    var chatReference: DatabaseReference {
+        return rootReference.child("chats").child(chatID)
     }
     
     var observerShowKeyboard: NSObjectProtocol!
@@ -67,15 +63,14 @@ class ChatViewController: UIViewController {
     }
     
     func getAllMessagesForCurrentChat(completion: @escaping (Bool) -> ()) {
-        chatMessages.observe(.childAdded) { snapshot in
-            let messageID = snapshot.key
-            let messageRef = self.messagesReference.child(messageID)
-            messageRef.observe(.value) { [unowned self] snapshot in
-                guard let messageDict = snapshot.value as? [String: Any], let message = Message(from: messageDict) else { return }
-                
-                self.messages.append(message)
-                completion(true)
+        chatMessagesHandler = chatMessages.observe(.childAdded) { [unowned self] snapshot in
+            guard let messageDict = snapshot.value as? [String: Any],
+                let message = Message(from: messageDict) else {
+                    completion(false)
+                    return
             }
+            self.messages.append(message)
+            completion(true)
         }
     }
     
@@ -86,51 +81,59 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = user.name
+        navigationItem.title = "temp chat name"
         
-        getAllMessagesForCurrentChat { finished in
-            self.messagesTableView.reloadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getAllMessagesForCurrentChat { [unowned self] success in
+            if success {
+                self.messagesTableView.reloadData()
+            }
+        }
         super.viewWillAppear(animated)
-        observerShowKeyboard = NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: .main, using: keyboardWillShow(_:))
-        observerHideKeyboard = NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: .main, using: keyboardWillHide(_:))
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        chatMessages.removeObserver(withHandle: chatMessagesHandler!)
+        
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(observerShowKeyboard)
-        NotificationCenter.default.removeObserver(observerHideKeyboard)
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    private func sendMessage() {
-        guard let content = messageTextField.text else { return }
-        let message: [String : Any] = ["content": content,
-                                       "recipient_id": user.id,
-                                       "sender_id": loggedInUserID,
-                                       "timestamp": NSDate().timeIntervalSince1970
+    private func send(message: String) {
+        
+        let time = NSDate().timeIntervalSince1970
+        let messageDict: [String : Any] = ["content": message,
+                                       "sender_id": currentUserID,
+                                       "timestamp": time
         ]
         
-        let messageChild =  messagesReference.childByAutoId()
-        messageChild.setValue(message)
+        let chat: [String: Any] = ["lastMessage": message,
+                                   "timestamp": time
+        ]
         
-        userMessagesReference.child(loggedInUserID).child(user.id).updateChildValues([messageChild.key: 1])
-        userMessagesReference.child(user.id).child(loggedInUserID).updateChildValues([messageChild.key: 1])
+        chatReference.updateChildValues(chat)
         
+        let messageChild =  chatMessages.childByAutoId()
+        messageChild.setValue(messageDict)
         
         messageTextField.text = nil
     }
     
     @IBAction func onSendButtonPress(_ sender: UIButton) {
-        sendMessage()
+        guard let content = messageTextField.text else { return }
+        send(message: content)
     }
 }
 
 extension ChatViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        sendMessage()
+        guard let content = messageTextField.text else { return false }
+        send(message: content)
         return true
     }
 }
@@ -139,17 +142,19 @@ extension ChatViewController: UITextFieldDelegate {
 // MARK:- Keyboard handling
 
 extension ChatViewController {
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         guard let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else { return }
         let keyboardHeight = keyboardSize.height
         messageStackBottomContraint.constant = keyboardHeight
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         messageStackBottomContraint.constant = 0
     }
     
 }
+
+// MARK:- TableView Datasource & Delegate
 
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -162,9 +167,9 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         
         let message = sortedMessages[indexPath.row]
         cell.messageLabel.text = message.content
-        cell.messageLabel.textColor = message.senderID == loggedInUserID ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        cell.bubbleView.backgroundColor = message.senderID == loggedInUserID ? #colorLiteral(red: 0.2352941176, green: 0.5882352941, blue: 0.9490196078, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        cell.stackView.alignment = message.senderID == loggedInUserID ? .trailing : .leading
+        cell.messageLabel.textColor = message.senderID == currentUserID ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        cell.bubbleView.backgroundColor = message.senderID == currentUserID ? #colorLiteral(red: 0.2352941176, green: 0.5882352941, blue: 0.9490196078, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        cell.stackView.alignment = message.senderID == currentUserID ? .trailing : .leading
         
         let size = estimatedSizeForText(text: message.content)
         let screenWidth = UIScreen.main.bounds.width

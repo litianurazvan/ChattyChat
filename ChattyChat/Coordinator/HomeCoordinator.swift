@@ -10,32 +10,44 @@ import UIKit
 
 class HomeCoordinator: CoordinatorType {
     var navigationController: UINavigationController
+    var homeController: HomeViewController!
+    
     weak var delegate: HomeCoordinatorDelegate?
+    
+    var userManager: UserManager!
+    
+    lazy var chatService = ChatService(user: userManager.currentUser!)
     
     init(with navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-        let homeController = storyboard.instantiateViewController(HomeViewController.self)
-        homeController.userSignedOut = userSignedOut
-        homeController.showUsers = showUsers
-        homeController.showChatForUser = showChatForUser
-        navigationController.childViewControllers.forEach { vc in
+        self.homeController = self.storyboard.instantiateViewController(HomeViewController.self)
+        let viewModel = HomeViewModel(with: self.userManager, chatService: self.chatService)
+        
+        self.homeController.viewModel = viewModel
+        self.homeController.userSignedOut = self.userSignedOut
+        self.homeController.showUsers = self.showUsers
+        self.homeController.showChatWithID = self.showChatWithID
+        self.navigationController.childViewControllers.forEach { vc in
             vc.removeFromParentViewController()
         }
-        navigationController.setViewControllers([homeController], animated: true)
+        self.navigationController.setViewControllers([self.homeController], animated: true)
     }
     
     
-    func showChatForUser(_ user: User) {
-        let messageController = ChatViewController(user: user)
-        self.navigationController.pushViewController(messageController, animated: true)
+    func showChatWithID(_ id: String) {
+        guard let userID = userManager.currentUserID else { return }
+        let chatController = ChatViewController(chatID: id)
+        chatController.currentUserID = userID
+        chatController.chatViewModel = ChatViewModel(userManager: userManager)
+        self.navigationController.pushViewController(chatController, animated: true)
     }
     
     private func didSelectUser(_ user: User) {
         navigationController.dismiss(animated: true) {
-            self.showChatForUser(user)
+            self.homeController.didSelectUser(user)
         }
     }
     

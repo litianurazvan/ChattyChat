@@ -14,6 +14,8 @@ class LoginViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var userManager: UserManager!
+    
     var authetificationSucceded: ()->() = { }
     
 
@@ -30,14 +32,13 @@ class LoginViewController: UIViewController, SegueHandlerType {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
-            if let error = error {
+        userManager.signIn(withEmail: email, password: password) { [unowned self] result in
+            switch result {
+            case .success:
+                self.authetificationSucceded()
+            case let .failure(error):
                 let alert = UIAlertController.alertWithTitle("Error", message: error.localizedDescription)
-                self?.present(alert, animated: true, completion: nil)
-            }
-            
-            if user != nil {
-                self?.authetificationSucceded()
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

@@ -30,12 +30,30 @@ extension User: Equatable, Hashable {
 }
 
 extension User {
-    init?(dictionary: [String: Any]) {
-        guard let name = dictionary["name"] as? String else { return nil }
-        guard let email = dictionary["email"] as? String else { return nil }
-        guard let id = dictionary["user_id"] as? String else { return nil }
+    
+    enum Keys: String {
+        case id = "user_id"
+        case name = "name"
+        case email = "email"
+        case profileImageUrlString = "profileImage"
+    }
+    
+    init?(id: String, info: [String: Any]) {
+        guard let name = info[Keys.name.rawValue] as? String else { return nil }
+        guard let email = info[Keys.email.rawValue] as? String else { return nil }
         
-        self.profileImageUrlString = dictionary["profileImage"] as? String
+        self.profileImageUrlString = info[Keys.profileImageUrlString.rawValue] as? String
+        self.name = name
+        self.email = email
+        self.id = id
+    }
+    
+    init?(dictionary: [String: Any]) {
+        guard let id = dictionary[Keys.id.rawValue] as? String else { return nil }
+        guard let name = dictionary[Keys.name.rawValue] as? String else { return nil }
+        guard let email = dictionary[Keys.email.rawValue] as? String else { return nil }
+        
+        self.profileImageUrlString = dictionary[Keys.profileImageUrlString.rawValue] as? String
         self.name = name
         self.email = email
         self.id = id

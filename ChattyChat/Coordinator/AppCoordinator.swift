@@ -12,6 +12,8 @@ import Firebase
 class AppCoordinator: CoordinatorType {
     weak var delegate: RegistrationCoordinatorDelegate?
     
+    lazy var userManager = UserManager()
+    
     var navigationController: UINavigationController
     var childCoordinators = [CoordinatorType]()
     
@@ -21,6 +23,7 @@ class AppCoordinator: CoordinatorType {
     
     fileprivate func startRegistrationFlow() {
         let registrationCoordinator = RegistrationCoordinator(with: navigationController)
+        registrationCoordinator.userManager = userManager
         registrationCoordinator.delegate = self
         childCoordinators.append(registrationCoordinator)
         registrationCoordinator.start()
@@ -28,16 +31,17 @@ class AppCoordinator: CoordinatorType {
     
     fileprivate func startHomePageFlow() {
         let homeCoordinator = HomeCoordinator(with: navigationController)
+        homeCoordinator.userManager = userManager
         homeCoordinator.delegate = self
         childCoordinators.append(homeCoordinator)
         homeCoordinator.start()
     }
     
     func start() {
-        if Auth.auth().currentUser == nil {
-            startRegistrationFlow()
-        } else {
+        if userManager.userIsLoggedIn {
             startHomePageFlow()
+        } else {
+            startRegistrationFlow()
         }
     }
 }
