@@ -14,15 +14,15 @@ class AppCoordinator: CoordinatorType {
     
     lazy var userManager = UserManager()
     
-    var navigationController: UINavigationController
+    var rootNavigationController: UINavigationController
     var childCoordinators = [CoordinatorType]()
     
     init(with navigationController: UINavigationController) {
-        self.navigationController = navigationController
+        self.rootNavigationController = navigationController
     }
     
     fileprivate func startRegistrationFlow() {
-        let registrationCoordinator = RegistrationCoordinator(with: navigationController)
+        let registrationCoordinator = RegistrationCoordinator(with: rootNavigationController)
         registrationCoordinator.userManager = userManager
         registrationCoordinator.delegate = self
         childCoordinators.append(registrationCoordinator)
@@ -30,10 +30,11 @@ class AppCoordinator: CoordinatorType {
     }
     
     fileprivate func startHomePageFlow() {
-        let homeCoordinator = HomeCoordinator(with: navigationController)
+        let homeCoordinator = HomeCoordinator(with: rootNavigationController)
         homeCoordinator.userManager = userManager
         homeCoordinator.delegate = self
         childCoordinators.append(homeCoordinator)
+        
         homeCoordinator.start()
     }
     
@@ -48,14 +49,18 @@ class AppCoordinator: CoordinatorType {
 
 extension AppCoordinator: RegistrationCoordinatorDelegate {
     func registrationDidFinishCoordinating(_ coordinator: CoordinatorType) {
-        childCoordinators = childCoordinators.filter { $0 !== coordinator }
-        self.startHomePageFlow()
+        rootNavigationController.dismiss(animated: false) {
+            self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
+            self.startHomePageFlow()
+        }
     }
 }
 
 extension AppCoordinator: HomeCoordinatorDelegate {
     func homeDidFinishCoordinating(_ coordinator: CoordinatorType) {
-        childCoordinators = childCoordinators.filter { $0 !== coordinator }
-        self.startRegistrationFlow()
+        rootNavigationController.dismiss(animated: false) {
+            self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
+            self.startRegistrationFlow()
+        }
     }
 }

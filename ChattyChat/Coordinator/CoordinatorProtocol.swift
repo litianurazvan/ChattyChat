@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol CoordinatorType: AnyObject {
-    var navigationController: UINavigationController { get set }
+protocol CoordinatorType: class {
+    var rootNavigationController: UINavigationController { get }
     func start()
 }
 
@@ -18,3 +18,4 @@ extension CoordinatorType {
         return UIStoryboard(storyboard: .main, bundle: nil)
     }
 }
+

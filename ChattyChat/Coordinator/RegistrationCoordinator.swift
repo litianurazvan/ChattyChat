@@ -9,37 +9,38 @@
 import UIKit
 
 class RegistrationCoordinator: CoordinatorType {
-    var navigationController: UINavigationController
+    var rootNavigationController: UINavigationController
+    var contextNavigationController: UINavigationController!
+    
     weak var delegate: RegistrationCoordinatorDelegate?
     
     var userManager: UserManager!
     
     init(with navigationController: UINavigationController) {
-        self.navigationController = navigationController
+        rootNavigationController = navigationController
     }
     
     func start() {
         let startController = storyboard.instantiateViewController(StartViewController.self)
-        startController.showLogin = self.showLogin
-        startController.showSignUp = self.showSignUp
-        navigationController.childViewControllers.forEach { vc in
-            vc.removeFromParentViewController()
-        }
-        navigationController.setViewControllers([startController], animated: true)
+        startController.showLogin = showLogin
+        startController.showSignUp = showSignUp
+        
+        contextNavigationController = UINavigationController(rootViewController: startController)
+        rootNavigationController.present(contextNavigationController, animated: false, completion: nil)
     }
     
     func showLogin() {
         let loginController = storyboard.instantiateViewController(LoginViewController.self)
         loginController.userManager = userManager
-        loginController.authetificationSucceded = self.authentificationSucceded
-        navigationController.show(loginController, sender: self)
+        loginController.authetificationSucceded = authentificationSucceded
+        contextNavigationController.show(loginController, sender: self)
     }
     
     func showSignUp() {
         let signUpController = storyboard.instantiateViewController(SignUpViewController.self)
         signUpController.userManager = userManager
-        signUpController.authetificationSucceded = self.authentificationSucceded
-        navigationController.show(signUpController, sender: self)
+        signUpController.authetificationSucceded = authentificationSucceded
+        contextNavigationController.show(signUpController, sender: self)
     }
     
     func authentificationSucceded() {
