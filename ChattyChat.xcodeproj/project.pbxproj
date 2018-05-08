@@ -45,6 +45,7 @@
 		B2E616AC20908CD10083B14B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616AB20908CD10083B14B /* Result.swift */; };
 		B2E616B02090CAEF0083B14B /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616AF2090CAEF0083B14B /* ChatService.swift */; };
 		B2E616B22091B07F0083B14B /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616B12091B07F0083B14B /* ChatViewModel.swift */; };
+		B2E616B820A1BCA10083B14B /* ChatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616B720A1BCA10083B14B /* ChatCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		B2E616AB20908CD10083B14B /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		B2E616AF2090CAEF0083B14B /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		B2E616B12091B07F0083B14B /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		B2E616B720A1BCA10083B14B /* ChatCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellViewModel.swift; sourceTree = "<group>"; };
 		FE4BF27CA8D884DC25DCFF25 /* Pods_ChattyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChattyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -276,6 +278,7 @@
 			children = (
 				B2729B932059073500A9504D /* HomeViewController.swift */,
 				B2E616A7209065130083B14B /* HomeViewModel.swift */,
+				B2E616B720A1BCA10083B14B /* ChatCellViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				B2729B9A2059073500A9504D /* LoginViewController.swift in Sources */,
 				B2729BAE20598C3C00A9504D /* String+CapitalisedFirst.swift in Sources */,
 				B2C340C720871CBF00FD0CDD /* ChatroomCell.swift in Sources */,
+				B2E616B820A1BCA10083B14B /* ChatCellViewModel.swift in Sources */,
 				B2E616A8209065130083B14B /* HomeViewModel.swift in Sources */,
 				B2729B972059073500A9504D /* SignUpViewController.swift in Sources */,
 				B2BD6464205BC4E200384971 /* HomeCoordinator.swift in Sources */,

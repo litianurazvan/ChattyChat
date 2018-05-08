@@ -11,6 +11,7 @@ import Firebase
 struct Chat {
     let lastMessage: String?
     let timestamp: Double?
+    let imageURL: String?
     var members = [String: String]()
 }
 
@@ -21,17 +22,9 @@ extension Chat {
             members = membersDict
         }
         
-        if let lastMessage = dictionary["lastMessage"] as? String {
-            self.lastMessage = lastMessage
-        } else {
-            self.lastMessage = nil
-        }
-        
-        if let timestamp = dictionary["timestamp"] as? Double {
-            self.timestamp = timestamp
-        } else {
-            self.timestamp = nil
-        }
+        lastMessage = dictionary["lastMessage"] as? String
+        timestamp = dictionary["timestamp"] as? Double
+        imageURL = dictionary["imageURL"] as? String
     }
 }
 

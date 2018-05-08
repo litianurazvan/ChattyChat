@@ -39,16 +39,16 @@ class HomeViewController: UIViewController {
             }
         }
         
-//        viewModel.getCurrentUserInfo { result in
-//            switch result {
-//            case let .success(user):
-//                DispatchQueue.main.async {
-//                    self.navigationItem.title = user.name
-//                }
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
+        viewModel.getCurrentUserInfo { result in
+            switch result {
+            case let .success(user):
+                DispatchQueue.main.async {
+                    self.navigationItem.title = user.name
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
         
         self.navigationItem.title = viewModel.currentUserName
     }
@@ -67,12 +67,6 @@ class HomeViewController: UIViewController {
     @IBAction func onComposeMessageButtonTap(_ sender: UIBarButtonItem) {
         showUsers()
     }
-    
-    var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("h:mm a")
-        return dateFormatter
-    }()
 }
 
 
@@ -85,14 +79,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatroomCell", for: indexPath) as? ChatroomCell else { return UITableViewCell() }
+        guard let cellViewModel = viewModel.chatCellViewModel(for: indexPath) else { return UITableViewCell() }
         
-        let chatID = viewModel.sortedChatIDs[indexPath.row]
-        guard let chat = viewModel.chatForID(chatID) else { return UITableViewCell() }
-        
-        cell.userName.text = chat.members.values.filter{ $0 != viewModel.currentUserName }.reduce("", {$0 + $1})
-//        cell.userImageView.loadImageFromUrl(chat.recipient.profileImageUrlString, defaultImage: #imageLiteral(resourceName: "default_user"))
-        cell.lastMessage.text = chat.lastMessage
-        cell.timeSentLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(chat.timestamp ?? 0)))
+        cell.userName.text = cellViewModel.chatTitle
+        cell.userImageView.loadImageFromUrl(cellViewModel.imageURL, defaultImage: #imageLiteral(resourceName: "default_user"))
+        cell.lastMessage.text = cellViewModel.lastMessage
+        cell.timeSentLabel.text = cellViewModel.timeSent
         
         return cell
     }

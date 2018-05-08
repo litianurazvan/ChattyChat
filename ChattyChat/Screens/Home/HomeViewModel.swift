@@ -29,7 +29,7 @@ class HomeViewModel {
         }
     }
     
-    public func chatForID(_ id: String) -> Chat? {
+    private func chatForID(_ id: String) -> Chat? {
         return chats[id]
     }
     
@@ -74,6 +74,12 @@ class HomeViewModel {
             }
         }
         return nil
+    }
+    
+    func chatCellViewModel(for indexPath: IndexPath) -> ChatCellViewModel? {
+        let chatID = sortedChatIDs[indexPath.row]
+        guard let chat = chatForID(chatID), let currentUserName = currentUserName else { return nil }
+        return ChatCellViewModel(chat: chat, currentUserName: currentUserName)
     }
     
 }
