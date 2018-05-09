@@ -35,11 +35,12 @@ extension ChatCellViewModel {
     }
     
     public var lastMessage: String {
-        return chat.lastMessage ?? "Start a new conversation"
+        return chat.lastMessage ?? "Start the conversation"
     }
     
-    public var timeSent: String {
-        return dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(chat.timestamp ?? 0)))
+    public var timeSent: String? {
+        guard let timestamp = chat.timestamp else { return nil }
+        return dateFormatter.string(from: Date(timeIntervalSince1970: timestamp))
     }
     
 }

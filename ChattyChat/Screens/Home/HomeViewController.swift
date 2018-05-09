@@ -23,6 +23,10 @@ class HomeViewController: UIViewController {
     var showUsers: () -> () = { }
     var showChatWithID: (String) -> () = { _ in }
     
+    func chatsDidChange() {
+        chatTableView.reloadData()
+    }
+    
     func didSelectUser(_ user: User) {
         let id = viewModel.getChatID(for: user) ?? viewModel.getNewChatID(for: user)
         showChatWithID(id)
@@ -33,11 +37,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.getSortedChatInfo { success in
-            if success {
-                self.chatTableView.reloadData()
-            }
-        }
+        viewModel.chatDidChange = chatsDidChange
         
         viewModel.getCurrentUserInfo { result in
             switch result {

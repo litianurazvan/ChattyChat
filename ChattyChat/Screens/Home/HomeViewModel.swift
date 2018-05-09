@@ -13,7 +13,20 @@ class HomeViewModel {
     private let userManager: UserManager
     private let chatService: ChatService
     
-    var sortedChatIDs = [String]()
+    var sortedChatIDs = [String]() {
+        didSet {
+            chatDidChange()
+        }
+    }
+    
+    public var chatDidChange: ()->() = {}
+    
+    
+    private var chats = [String: Chat]() {
+        didSet {
+            sortedChatIDs = sortedByDateIDs(from: chats)
+        }
+    }
     
     public func getCurrentUserInfo(completion: @escaping (Result<User>) -> ()) {
         userManager.getUserInfo(completion: completion)
@@ -23,11 +36,6 @@ class HomeViewModel {
         return userManager.currentUserName
     }
     
-    public var chats = [String: Chat]() {
-        didSet {
-            chatsUpdated(sortedByDateIDs(from: chats))
-        }
-    }
     
     private func chatForID(_ id: String) -> Chat? {
         return chats[id]
@@ -37,11 +45,10 @@ class HomeViewModel {
         return chatService.createNewChat(with: user)
     }
     
-    var chatsUpdated: ([String]) -> () = { _ in }
-    
     init(with userManager: UserManager, chatService: ChatService) {
         self.userManager = userManager
         self.chatService = chatService
+        chatService.observer = self
     }
     
     private func sortedByDateIDs(from chats: [String: Chat]) -> [String] {
@@ -55,15 +62,6 @@ class HomeViewModel {
             }
             
             return lhsTimestamp > rhsTimestamp
-        }
-    }
-    
-    public func getSortedChatInfo(completion: @escaping (Bool) -> ()) {
-        chatService.getChats { [unowned self] chat in
-            
-            self.chats.merge(chat) { (_, new) in new }
-            self.sortedChatIDs = self.sortedByDateIDs(from: self.chats)
-            completion(true)
         }
     }
     
@@ -82,4 +80,10 @@ class HomeViewModel {
         return ChatCellViewModel(chat: chat, currentUserName: currentUserName)
     }
     
+}
+
+extension HomeViewModel: ChatDetailsObserver {
+    func chatService(_ chatService: ChatService, didDownload chatInfo: [String : Chat]) {
+        chats.merge(chatInfo) { (_, new) in new }
+    }
 }

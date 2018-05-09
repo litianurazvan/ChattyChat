@@ -46,6 +46,9 @@
 		B2E616B02090CAEF0083B14B /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616AF2090CAEF0083B14B /* ChatService.swift */; };
 		B2E616B22091B07F0083B14B /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616B12091B07F0083B14B /* ChatViewModel.swift */; };
 		B2E616B820A1BCA10083B14B /* ChatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616B720A1BCA10083B14B /* ChatCellViewModel.swift */; };
+		B2E616BA20A1EAA20083B14B /* ChatLiveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616B920A1EAA20083B14B /* ChatLiveObject.swift */; };
+		B2E616BC20A2DE520083B14B /* UserChatListObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616BB20A2DE520083B14B /* UserChatListObserver.swift */; };
+		B2E616BE20A2E4CE0083B14B /* ChatDetailsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E616BD20A2E4CE0083B14B /* ChatDetailsObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,9 @@
 		B2E616AF2090CAEF0083B14B /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		B2E616B12091B07F0083B14B /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		B2E616B720A1BCA10083B14B /* ChatCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellViewModel.swift; sourceTree = "<group>"; };
+		B2E616B920A1EAA20083B14B /* ChatLiveObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLiveObject.swift; sourceTree = "<group>"; };
+		B2E616BB20A2DE520083B14B /* UserChatListObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatListObserver.swift; sourceTree = "<group>"; };
+		B2E616BD20A2E4CE0083B14B /* ChatDetailsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsObserver.swift; sourceTree = "<group>"; };
 		FE4BF27CA8D884DC25DCFF25 /* Pods_ChattyChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChattyChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -287,6 +293,9 @@
 			isa = PBXGroup;
 			children = (
 				B2E616AF2090CAEF0083B14B /* ChatService.swift */,
+				B2E616B920A1EAA20083B14B /* ChatLiveObject.swift */,
+				B2E616BB20A2DE520083B14B /* UserChatListObserver.swift */,
+				B2E616BD20A2E4CE0083B14B /* ChatDetailsObserver.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -448,10 +457,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2E616AC20908CD10083B14B /* Result.swift in Sources */,
+				B2E616BA20A1EAA20083B14B /* ChatLiveObject.swift in Sources */,
 				B2729B9A2059073500A9504D /* LoginViewController.swift in Sources */,
 				B2729BAE20598C3C00A9504D /* String+CapitalisedFirst.swift in Sources */,
 				B2C340C720871CBF00FD0CDD /* ChatroomCell.swift in Sources */,
 				B2E616B820A1BCA10083B14B /* ChatCellViewModel.swift in Sources */,
+				B2E616BE20A2E4CE0083B14B /* ChatDetailsObserver.swift in Sources */,
 				B2E616A8209065130083B14B /* HomeViewModel.swift in Sources */,
 				B2729B972059073500A9504D /* SignUpViewController.swift in Sources */,
 				B2BD6464205BC4E200384971 /* HomeCoordinator.swift in Sources */,
@@ -467,6 +478,7 @@
 				B2729B9D2059086100A9504D /* UsersViewController.swift in Sources */,
 				B2C340CB2087212E00FD0CDD /* Chat.swift in Sources */,
 				B2BD6466205BCDE600384971 /* RegistrationCoordinatorDelegate.swift in Sources */,
+				B2E616BC20A2DE520083B14B /* UserChatListObserver.swift in Sources */,
 				B2E616AA209069EA0083B14B /* UserManager.swift in Sources */,
 				B2BD6462205BC3B400384971 /* CoordinatorProtocol.swift in Sources */,
 				B2729B982059073500A9504D /* HomeViewController.swift in Sources */,

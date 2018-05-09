@@ -8,27 +8,65 @@
 
 import Firebase
 
-struct ChatService {
+enum Reference {
+    case root
+    case chats
+    case userChats
+    case userChatsWithID(userID: String)
     
+    var databaseReference: Firebase.DatabaseReference {
+        switch self {
+        case .root:
+            return Database.database().reference()
+        case .chats:
+            return Database.database().reference().child("chats")
+        case .userChats:
+            return Database.database().reference().child("user_chats")
+        case let .userChatsWithID(userID):
+            return Database.database().reference().child("user_chats").child(userID)
+        }
+    }
+}
+
+class ChatService {
     private var currentUser: User
+    private var chatLiveObject: ChatLiveObject
     
+    weak var observer: ChatDetailsObserver?
+    
+    var chats = [String: Chat]() {
+        didSet {
+            observer?.chatService(self, didDownload: chats)
+        }
+    }
+
+    private func getChatInfoForID(_ chatID: String, completion: @escaping ((Chat) -> ())) {
+        chatsReference.child(chatID).observe(.value) { snapshot in
+            guard let chatDict = snapshot.value as? [String: Any] else { return }
+            if let chat = Chat(with: chatDict) {
+                completion(chat)
+            }
+        }
+    }
+
     init(user: User) {
-        self.currentUser = user
+        currentUser = user
+        chatLiveObject = ChatLiveObject(currentUserChatsReference: .userChatsWithID(userID: user.id))
+        chatLiveObject.observer = self
     }
     
-    private var rootReference = Database.database().reference()
-    
     private var chatsReference: DatabaseReference {
-        return rootReference.child("chats")
+        return Reference.chats.databaseReference
     }
     
     private var userChatsReference: DatabaseReference {
-        return rootReference.child("user_chats")
+        return Reference.userChats.databaseReference
+    }
+
+    private var currentUserChatsReference: DatabaseReference {
+        return Reference.userChatsWithID(userID: currentUser.id).databaseReference
     }
     
-    private var currentUserChatsReference: DatabaseReference {
-        return rootReference.child("user_chats").child(currentUser.id)
-    }
     
     public func createNewChat(with recipient : User) -> String {
         let newChatRef = chatsReference.childByAutoId()
@@ -44,24 +82,15 @@ struct ChatService {
         
         return chatID
     }
-    
-    public func getChats(completion: @escaping ([String: Chat]) -> ()) {
-        currentUserChatsReference.observe(.value) { snapshot in
-            guard let chatsKeyDict = snapshot.value as? [String: Any] else { return }
-            for chatID in chatsKeyDict.keys {
-                self.chatsReference.child(chatID).observe(.value) { snapshot in
-                    guard let chatDict = snapshot.value as? [String: Any] else { return }
-                    if let chat = Chat(with: chatDict) {
-                        completion([chatID:chat])
-                    }
-                }
+}
+
+extension ChatService: UserChatListObserver {
+    func chatLiveObject(_ liveObject: ChatLiveObject, didChangeChatIDList chatIDList: [String]) {
+        chatIDList.forEach { id in
+            getChatInfoForID(id) { [unowned self] chat in
+                self.chats[id] = chat
             }
         }
     }
-    
-    public func chatUpdated(completion: @escaping (Bool) -> ()) {
-        chatsReference.observe(.childChanged) { snapshot in
-            
-        }
-    }
 }
+
