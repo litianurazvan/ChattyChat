@@ -167,9 +167,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         
         let message = sortedMessages[indexPath.row]
         cell.messageLabel.text = message.content
-        cell.messageLabel.textColor = message.senderID == currentUserID ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        cell.bubbleView.backgroundColor = message.senderID == currentUserID ? #colorLiteral(red: 0.2352941176, green: 0.5882352941, blue: 0.9490196078, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        cell.stackView.alignment = message.senderID == currentUserID ? .trailing : .leading
+        cell.style = message.senderID == currentUserID ? .sender : .receiver
         
         let size = estimatedSizeForText(text: message.content)
         let screenWidth = UIScreen.main.bounds.width
